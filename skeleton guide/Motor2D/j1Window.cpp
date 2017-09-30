@@ -28,6 +28,7 @@ bool j1Window::Awake(pugi::xml_node& config)
 	{
 		LOG("SDL_VIDEO could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
+		
 	}
 	else
 	{
