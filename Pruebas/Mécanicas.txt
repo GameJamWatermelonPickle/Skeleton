@@ -1,0 +1,36 @@
+----Mécanicas---
+	1.Movimiento:
+		-Arriba
+		-Abajo
+		-Derecha
+		-Izquierda
+		-Salto simple
+		-Doble salto
+		-Deslizar
+		-Dash estático
+		-Dash en salto
+		-Correr
+		-Movimiento diagonal
+
+	2.Acciones:
+		-Atacar
+		-Disparar
+		-Castear
+		-Coger
+		-Soltar
+		-Lanzar
+		-Parar
+		-Guardar
+
+	3.Especiales:
+		-Caida Libre
+		-Cambio de gravedad
+		-Cambio de ejes
+		-Teleportar
+		-Cambiar tamaño/estado
+		-QTE
+		-Avanzar en el tiempo
+		-Retroceder en el tiempo
+		-Tradear
+		-¿Random?
+		-Control enemigo
