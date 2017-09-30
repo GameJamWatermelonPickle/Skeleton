@@ -27,6 +27,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
+	player = new ModulePlayer();
+	
 
 
 	// Ordered for awake / Start / Update
@@ -37,6 +39,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
+	AddModule(player);
+	
 
 	// render last to swap buffer
 	AddModule(render);

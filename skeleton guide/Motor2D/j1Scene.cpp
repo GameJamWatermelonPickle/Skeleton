@@ -32,6 +32,7 @@ bool j1Scene::Start()
 {
 	App->map->Load("NOMBRE.tmx");
 	return true;
+	
 }
 
 // Called each loop iteration

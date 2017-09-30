@@ -73,7 +73,7 @@ public:
 	layerInfo LayerInfo;
 	
 private:
-	
+	SDL_Texture* map = nullptr;
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
