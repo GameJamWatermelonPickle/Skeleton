@@ -96,6 +96,9 @@
     <ClInclude Include="Animation.h">
       <Filter>Desenvolupament  ========\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Desenvolupament  ========\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
