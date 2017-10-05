@@ -35,6 +35,16 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({213,43,23,29});
 	right.PushBack({243,43,23,29});
 	right.speed = 0.03;
+
+	left.PushBack({2,80,25,31});
+	left.PushBack({ 32,80,25,31 });
+	left.PushBack({ 62,80,25,31 });
+	left.PushBack({ 92,80,25,31 });
+	left.PushBack({ 122,80,25,31 });
+	left.PushBack({ 152,80,25,31 });
+	left.PushBack({ 182,80,25,31 });
+	left.PushBack({ 212,80,25,31 });
+	left.speed = 0.03;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -82,7 +92,7 @@ bool ModulePlayer::Update(float dt)
 		position.y-=0.1;
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		position.x -=0.1;
+		position.x -=0.1, current_animation = &left;
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_REPEAT)
 		position.y+=0.1;
