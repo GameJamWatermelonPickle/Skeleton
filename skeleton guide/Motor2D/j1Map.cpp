@@ -34,8 +34,8 @@ void j1Map::Draw()
 	p2List_item<MapLayer*>* item_layer = data.layermap.start;
 	p2List_item<TileSet*>* item_set = data.tilesets.start;
 
-	p2List_item<uint>* item = item_layer->data->properti.value.start; //item = data.layermap.start->data->gid.start;
-																	  // TODO 5: Prepare the loop to draw all tilesets + Blit
+	//p2List_item<uint>* item = item_layer->data->properti.value.start; //item = data.layermap.start->data->gid.start;
+																	 
 	for (int x = 0; x < item_layer->data->width; x++)
 	{
 		for (int y = 0; y < item_layer->data->height; y++)
@@ -56,23 +56,23 @@ void j1Map::Draw()
 				SDL_Rect rect = item_set->data->GetTileRect(tileID);
 				App->render->Blit(item_set->data->texture, position.x, position.y, &rect);
 
-				if (tileID != 30 && tileID != 10 && tileID != 34 && tileID != 15)
+				/*if (tileID != 30 && tileID != 10 && tileID != 34 && tileID != 15)
 				{
 					SDL_Rect rec = item_set->data->GetTileRect(46);
 					App->render->Blit(item_set->data->texture, position.x, position.y, &rec);
 
-				}
+				}*/
 
 			}
-			if (item->next != nullptr)
+			/*if (item->next != nullptr)
 			{
 				item = item->next;
-			}
+			}*/
 		}
-		if (item->next != nullptr)
+		/*if (item->next != nullptr)
 		{
 			item = item->next;
-		}
+		}*/
 	}
 
 

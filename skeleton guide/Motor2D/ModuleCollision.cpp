@@ -41,8 +41,9 @@ bool ModuleCollision::PreUpdate()
 			col->next->prev = col->prev;
 			col->prev->next = col->next;
 			RELEASE(col->data);
-			col = col->next;
+			
 		}
+		col = col->next;
 	}
 
 	return true;
@@ -75,8 +76,7 @@ bool ModuleCollision::CleanUp()
 	c_item = colliders.start;
 	while (c_item != NULL)
 	{
-		RELEASE(c_item->data);
-		c_item = c_item->next;
+		RELEASE(c_item);
 	}
 
 	return true;

@@ -4,8 +4,10 @@
 #include "j1Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "SDL\include\SDL.h"
 
 struct SDL_Texture;
+struct Collider;
 
 
 class ModulePlayer : public j1Module
@@ -15,21 +17,22 @@ public:
 	~ModulePlayer();
 
 	bool Start();
-	bool Update();
+	bool Update(float);
 	bool CleanUp();
 	
 
 public:
-
+	Collider* playerCollider;
 	SDL_Texture* graphics = nullptr;
-	/*int font_score = -1;
-	char score_text[10];
-	uint score = 0;
+	SDL_Rect rectPlayer;
 	Animation* current_animation = nullptr;
 	Animation idle;
+	Animation right;
+	Animation left;
 	Animation up;
 	Animation down;
-	iPoint position;*/
+	iPoint position;
+
 	bool destroyed = false;
 };
 

@@ -51,11 +51,11 @@ public:
 	Collider* AddCollider(SDL_Rect , COLLIDER_TYPE , j1Module*);
 	bool DrawDebug();
 	//Colision Player con Map Collider::CheckPlayerMapCollision()
-
+	p2List<Collider*> colliders;
 private:
 	bool matrix[MAX_COLLIDERS][MAX_COLLIDERS];
 	bool debug = false;
-	p2List<Collider*> colliders;
+	
 	
 };
 
