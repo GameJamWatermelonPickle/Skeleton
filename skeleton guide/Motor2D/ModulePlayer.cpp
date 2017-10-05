@@ -75,20 +75,21 @@ bool ModulePlayer::CleanUp()
 bool ModulePlayer::Update(float dt)
 {
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
-		position.y +=2;
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		position.y-=1;
 
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
-		position.x -=2;
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		position.x -=1;
 
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-		position.y-=2;
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_REPEAT)
+		position.y+=2;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		position.x += 2, current_animation = &right;
+		position.x += 1, current_animation = &right;
 	playerCollider->SetPos(position.x, position.y);
-
-	App->render->Blit(graphics, position.x, position.y, &playerCollider->rect/*&(current_animation->GetCurrentFrame())*/);
+	playerCollider->rect.h = 10;
+	playerCollider->rect.w = 10;
+	App->render->Blit(graphics, position.x, position.y,&(current_animation->GetCurrentFrame()));
 
 
 	return true;
