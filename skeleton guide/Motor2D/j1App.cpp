@@ -14,6 +14,7 @@
 #include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
+#include "FadeToBlack.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -30,7 +31,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	player = new ModulePlayer();
 	colliders = new ModuleCollision();
-
+	fade = new ModuleFadeToBlack();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -42,7 +43,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(player);
 	AddModule(colliders);
-
+	AddModule(fade);
 	// render last to swap buffer
 	AddModule(render);
 }

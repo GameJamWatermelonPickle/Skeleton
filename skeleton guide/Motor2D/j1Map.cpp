@@ -60,7 +60,7 @@ void j1Map::Draw()
 				if (tileID != 30 && tileID != 10 && tileID != 34 && tileID != 15)
 				{
 					/*Collider* col = new Collider(rect, COLLIDER_WALL, mapCollision->callback);
-					data.dataCollider.add(col); mapCollision no se puede leer de memoria averiguar dodne se declara*/ 
+					data.dataCollider.add(col); */
 					
 				}
 				/*if (tileID != 30 && tileID != 10 && tileID != 34 && tileID != 15)
