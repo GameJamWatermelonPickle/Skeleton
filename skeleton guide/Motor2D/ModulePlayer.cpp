@@ -17,21 +17,24 @@ ModulePlayer::ModulePlayer()
 	position.y = 10;
 	
 	//idle
-	idle.PushBack({ 3, 0, 8, 15 });
-	idle.PushBack({ 14, 0, 8, 15});
-	idle.PushBack({ 25,0,8,15 });
-	idle.PushBack({ 36,0,8,15 });
-
+	idle.PushBack({ 6, 0, 17,31 });
+	idle.PushBack({ 28, 0,17, 31});
+	idle.PushBack({ 50,0,17,31 });
+	idle.PushBack({ 72,0,17,31 });
+	idle.PushBack({ 50,0,17,31 });
+	idle.PushBack({ 28, 0,17, 31 });
+	idle.speed = 0.03;
 	//Right
-	right.PushBack({1,21,12,15});
-	right.PushBack({16,21,12,15});
-	right.PushBack({31,21,12,15});
-	right.PushBack({46,21,12,15});
-	right.PushBack({61,21,12,15});
-	right.PushBack({76,21,12,15});
-	right.PushBack({91,21,12,15});
-	right.PushBack({106,21,12,15});
-	right.PushBack({121,21,12,15});
+	right.PushBack({2,43,23,29});
+	right.PushBack({33,43,23,29});
+	right.PushBack({63,43,23,29});
+	right.PushBack({93,43,23,29});
+	right.PushBack({123,43,23,29});
+	right.PushBack({153,43,23,29});
+	right.PushBack({183,43,23,29});
+	right.PushBack({213,43,23,29});
+	right.PushBack({243,43,23,29});
+	right.speed = 0.03;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -45,10 +48,10 @@ bool ModulePlayer::Start()
 	graphics = App->tex->Load("Sprites/character.png");
 	current_animation = &idle;
 	destroyed = false;
-	position.x = 10;
-	position.y = 10;
+	position.x = 10.f;
+	position.y = 10.f;
 
-	playerCollider = App->colliders->AddCollider({ position.x, position.y, 12, 15 }, COLLIDER_PLAYER, this);
+	playerCollider = App->colliders->AddCollider({ (int)position.x, (int)position.y, 12, 15 }, COLLIDER_PLAYER, this);
 	rectPlayer.x = 10;
 	rectPlayer.y = 10;
 	rectPlayer.h = 12;
@@ -74,18 +77,18 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 bool ModulePlayer::Update(float dt)
 {
-
+	current_animation = &idle;
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-		position.y-=1;
+		position.y-=0.1;
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		position.x -=1;
+		position.x -=0.1;
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_REPEAT)
-		position.y+=2;
+		position.y+=0.1;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		position.x += 1, current_animation = &right;
+		position.x += 0.1, current_animation = &right;
 	playerCollider->SetPos(position.x, position.y);
 	playerCollider->rect.h = 10;
 	playerCollider->rect.w = 10;

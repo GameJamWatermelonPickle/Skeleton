@@ -31,7 +31,7 @@ public:
 	Animation left;
 	Animation up;
 	Animation down;
-	iPoint position;
+	fPoint position;
 
 	bool destroyed = false;
 };
