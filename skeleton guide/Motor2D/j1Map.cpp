@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include <math.h>
+#include "ModuleCollision.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -33,7 +34,7 @@ void j1Map::Draw()
 
 	p2List_item<MapLayer*>* item_layer = data.layermap.start;
 	p2List_item<TileSet*>* item_set = data.tilesets.start;
-
+	
 	//p2List_item<uint>* item = item_layer->data->properti.value.start; //item = data.layermap.start->data->gid.start;
 																	 
 	for (int x = 0; x < item_layer->data->width; x++)
@@ -56,6 +57,12 @@ void j1Map::Draw()
 				SDL_Rect rect = item_set->data->GetTileRect(tileID);
 				App->render->Blit(item_set->data->texture, position.x, position.y, &rect);
 
+				if (tileID != 30 && tileID != 10 && tileID != 34 && tileID != 15)
+				{
+					/*Collider* col = new Collider(rect, COLLIDER_WALL, mapCollision->callback);
+					data.dataCollider.add(col); mapCollision no se puede leer de memoria averiguar dodne se declara*/ 
+					
+				}
 				/*if (tileID != 30 && tileID != 10 && tileID != 34 && tileID != 15)
 				{
 					SDL_Rect rec = item_set->data->GetTileRect(46);

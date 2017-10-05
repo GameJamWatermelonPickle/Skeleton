@@ -5,12 +5,13 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Module.h"
+#include "ModuleCollision.h"
 
 struct Properties
 {
 	p2SString name = nullptr;
 	p2List<uint> value;
-	Properties() { value.clear(); }
+	~Properties() { value.clear(); }
 };
 struct MapLayer
 {
@@ -77,6 +78,7 @@ struct MapData
 	p2List<TileSet*>	tilesets;
 	// TODO 2: Add a list/array of layers to the map!
 	p2List<MapLayer*>	layermap;
+	p2List<Collider*> dataCollider;
 };
 
 // ----------------------------------------------------
@@ -116,6 +118,7 @@ private:
 public:
 
 	MapData data;
+	Collider *mapCollision= nullptr;
 
 private:
 
