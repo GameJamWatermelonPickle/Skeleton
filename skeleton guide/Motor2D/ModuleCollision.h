@@ -55,7 +55,7 @@ public:
 private:
 	bool matrix[MAX_COLLIDERS][MAX_COLLIDERS];
 	bool debug = false;
-	p2List<Collider*> collider;
+	p2List<Collider*> colliders;
 	
 };
 
