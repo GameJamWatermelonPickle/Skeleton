@@ -37,10 +37,17 @@ bool ModuleSceneBaseballField::Start()
 	App->render->camera.x = App->render->camera.y = 0;
 
 	// Colliders ---
-	//App->collision->AddCollider({ 0, 230, 500, 10 }, COLLIDER_WALL);
-	//App->collision->AddCollider({ 0, 0, 500, 10 }, COLLIDER_WALL);
-	//App->collision->AddCollider({ 374, 0, 10, 500 }, COLLIDER_WALL);
-	//App->collision->AddCollider({ 0, 0, 10, 500 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 153, 0, 800, 10 }, COLLIDER_WALL); //1
+	App->collision->AddCollider({ 143, 0, 10, 186 }, COLLIDER_WALL);//2
+	App->collision->AddCollider({ 26, 174, 127, 10 }, COLLIDER_WALL);//3
+	App->collision->AddCollider({ 16, 184, 10, 569 }, COLLIDER_WALL);//4
+	App->collision->AddCollider({ 26, 792, 127, 10 }, COLLIDER_WALL);//5
+	App->collision->AddCollider({ 143, 792, 10, 186 }, COLLIDER_WALL);//6
+	App->collision->AddCollider({ 153, 951, 800, 10 }, COLLIDER_WALL);//7
+	App->collision->AddCollider({ 953, 792, 10, 186 }, COLLIDER_WALL);//8
+	App->collision->AddCollider({ 953, 792, 127, 10 }, COLLIDER_WALL);//9
+	
+
 
 	R.x = 0;
 	R.y = 0;
