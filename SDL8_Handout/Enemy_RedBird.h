@@ -7,18 +7,14 @@
 class Enemy_RedBird : public Enemy
 {
 private:
-	float wave = -1.0f;
-	bool going_up = true;
-	int original_y = 0;
 	Animation fly;
-
-	Path path1;
+	iPoint originalpos;
+	Path movement;
 
 public:
 
 	Enemy_RedBird(int x, int y);
 
-	bool collW = false, collA = false, collS = false, collD = false;
 	void OnCollision(Collider* c1, Collider* c2);
 
 	void Move();
