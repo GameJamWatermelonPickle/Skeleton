@@ -7,22 +7,22 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
-#include "ModuleSceneSpace.h"
+#include "ModuleSceneLevelSelector.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModuleSceneSpace::ModuleSceneSpace()
+ModuleSceneLevelSelector::ModuleSceneLevelSelector()
 {}
 
-ModuleSceneSpace::~ModuleSceneSpace()
+ModuleSceneLevelSelector::~ModuleSceneLevelSelector()
 {}
 
 // Load assets
-bool ModuleSceneSpace::Start()
+bool ModuleSceneLevelSelector::Start()
 {
-	LOG("Loading space scene");
+	LOG("Loading level selector");
 	
-	background = App->textures->Load("rtype/background.png");
+	background = App->textures->Load("rtype/Transicion_prueba.png");
 
 	App->player->Enable();
 	App->particles->Enable();
@@ -46,9 +46,9 @@ bool ModuleSceneSpace::Start()
 }
 
 // UnLoad assets
-bool ModuleSceneSpace::CleanUp()
+bool ModuleSceneLevelSelector::CleanUp()
 {
-	LOG("Unloading space scene");
+	LOG("Unloading level selector");
 
  	App->textures->Unload(background);
 
@@ -61,7 +61,7 @@ bool ModuleSceneSpace::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleSceneSpace::Update()
+update_status ModuleSceneLevelSelector::Update()
 {
 	// Move camera forward -----------------------------
 	//App->render->camera.x += 1 * SCREEN_SIZE;
