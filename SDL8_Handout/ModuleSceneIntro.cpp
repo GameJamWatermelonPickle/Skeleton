@@ -23,9 +23,14 @@ bool ModuleSceneIntro::Start()
 
 	App->collision->CleanUp();
 	
-	background = App->textures->Load("rtype/intro.png");
+	background = App->textures->Load("rtype/menu.png");
+	point = App->textures->Load("rtype/point.png");
+
 
 	App->render->camera.x = App->render->camera.y = 0;
+
+	positionx = 110;
+	positiony = 246;
 	
 	return true;
 }
@@ -44,10 +49,40 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update()
 {
 	App->render->Blit(background, 0, 0, NULL);
+	App->render->Blit(point, positionx, positiony, NULL);
 
-	if(App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->level_selector);
+		if (positionx == 110) {
+			App->fade->FadeToBlack(this, (Module*)App->level_selector);
+		}
+		else {
+			App->CleanUp();
+			return update_status::UPDATE_STOP;
+		}
+	}
+
+	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
+	{
+		if (positiony == 246) {
+			positionx = 139;
+			positiony = 416;
+		}
+		else {
+			positionx = 110;
+			positiony = 246;
+		}
+	}
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
+	{
+		if (positiony == 416) {
+			positionx = 110;
+			positiony = 246;
+		}
+		else {
+			positionx = 139;
+			positiony = 416;
+		}
 	}
 
 	return UPDATE_CONTINUE;
