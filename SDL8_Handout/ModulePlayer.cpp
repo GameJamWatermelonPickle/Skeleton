@@ -62,23 +62,37 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	
-
+	;
 	int speed = 1;
-
+	//Dash
 	if(App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x -= speed;
+
+		if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN)
+		{
+			position.x -= 20 * speed;
+		}
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;
+
+		if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN)
+		{
+			position.x += 20 * speed;
+		}
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y += speed;
+
+		if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN)
+		{
+			position.y += 20 * speed;
+		}
 		if(current_animation != &down)
 		{
 			down.Reset();
@@ -89,6 +103,10 @@ update_status ModulePlayer::Update()
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y -= speed;
+		if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN)
+		{
+			position.y -= 20 * speed;
+		}
 		if(current_animation != &up)
 		{
 			up.Reset();
