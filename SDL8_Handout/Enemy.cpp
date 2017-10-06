@@ -3,6 +3,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
+#include "ModuleSceneBaseballField.h"
 
 Enemy::Enemy(int x, int y) : position(x, y)
 {}
@@ -29,5 +30,6 @@ void Enemy::Draw(SDL_Texture* sprites)
 
 void Enemy::OnCollision(Collider* collider)
 {
-	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	App->baseball_field->death++;
 }
