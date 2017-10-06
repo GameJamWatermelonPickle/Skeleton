@@ -175,7 +175,7 @@ update_status ModulePlayer::Update()
 	}
 
 	else {
-		int speed = 3;
+		int speed = 4;
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
