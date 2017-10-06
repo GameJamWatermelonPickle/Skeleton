@@ -243,8 +243,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			collD = true;
 	}
 
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY)
-		App->baseball_field->color += 20;
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY && App->baseball_field->over == false)
+		App->baseball_field->color += 10;
 
 	/*if (c1 == col && destroyed == false && App->fade->IsFading() == false)
 	{

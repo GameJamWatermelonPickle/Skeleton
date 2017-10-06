@@ -76,6 +76,11 @@ update_status ModuleSceneBaseballField::Update()
 {
 	App->render->Blit(background, 0, 0, NULL);
 
+	if (color >= 250) {
+		App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);
+		over = true;
+	}
+
 
 	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{

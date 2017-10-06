@@ -22,6 +22,7 @@ public:
 	SDL_Rect R;
 	uint fx = 0;
 	uint color = 0;
+	bool over = false;
 	uint death = 0;
 };
 
