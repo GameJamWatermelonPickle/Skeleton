@@ -18,6 +18,9 @@ public:
 
 	Enemy_RedBird(int x, int y);
 
+	bool collW = false, collA = false, collS = false, collD = false;
+	void OnCollision(Collider* c1, Collider* c2);
+
 	void Move();
 };
 
