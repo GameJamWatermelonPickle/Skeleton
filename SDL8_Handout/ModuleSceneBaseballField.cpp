@@ -68,6 +68,7 @@ bool ModuleSceneBaseballField::CleanUp()
 	App->player->Disable();
 	App->textures->Unload(background);
 
+
 	return true;
 }
 

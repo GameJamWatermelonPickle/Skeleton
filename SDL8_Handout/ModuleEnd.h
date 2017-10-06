@@ -20,9 +20,9 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	SDL_Rect foreground;
 	SDL_Rect background;
 	bool check = true;
+
 
 };
 #endif

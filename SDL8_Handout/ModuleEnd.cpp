@@ -16,10 +16,6 @@
 
 ModuleEnd::ModuleEnd()
 {
-	background.x = 70;
-	background.y = 50;
-	background.w = 280;
-	background.h = 250;
 }
 
 ModuleEnd::~ModuleEnd()
@@ -31,7 +27,8 @@ bool ModuleEnd::Start()
 	App->player->Disable();
 	App->collision->Disable();
 	LOG("Loading end scene");
-	graphics = App->textures->Load("highscore.png");
+	graphics = App->textures->Load("rtype/game_over.png");
+	App->render->camera.x = App->render->camera.y = 0;
 	//App->audio->pause_music();
 
 	return true;
@@ -40,6 +37,7 @@ bool ModuleEnd::Start()
 // UnLoad assets
 bool ModuleEnd::CleanUp()
 {
+	App->textures->Unload(graphics);
 	LOG("Unloading END scene");
 	return true;
 }
@@ -49,10 +47,10 @@ update_status ModuleEnd::Update()
 {
 	update_status ret = UPDATE_CONTINUE;
 
-	
+	App->render->Blit(graphics, 50, 0, NULL);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 && KEY_DOWN) {
-		App->fade->FadeToBlack(this, App->scene_intro, 3);
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_intro);
 
 	/*if (!App->render->Blit(graphics, 0, SCREEN_HEIGHT - 224, &background, 0.75f))
 		ret = UPDATE_ERROR;*/

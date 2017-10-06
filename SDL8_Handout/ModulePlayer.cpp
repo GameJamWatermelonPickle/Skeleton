@@ -175,7 +175,7 @@ update_status ModulePlayer::Update()
 			
 		}
 
-		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->dpadUp == KEY_STATE::KEY_REPEAT || App->input->joy_up == KEY_STATE::KEY_REPEAT) && collA == false)
+		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->dpadUp == KEY_STATE::KEY_REPEAT || App->input->joy_up == KEY_STATE::KEY_REPEAT) && collW == false)
 		{
 			position.y -= speed;
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
@@ -195,9 +195,9 @@ update_status ModulePlayer::Update()
 
 //			current_animation = &idleMidle;
 
-		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN && App->fade->IsFading() == false)
 		{
-			App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->scene_intro);//que modulo se carga al morir
+			App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);//que modulo se carga al morir
 																							//death animation
 			App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE, 150);
 			App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, COLLIDER_NONE, 220);
