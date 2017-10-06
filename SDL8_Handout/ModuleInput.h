@@ -6,9 +6,10 @@
 #include "SDL\include\SDL_gamecontroller.h"
 #include "SDL\include\SDL_scancode.h"
 
-
 #define MAX_KEYS 300
 #define MAX_BUTTONS 100
+
+
 
 enum KEY_STATE
 {
@@ -18,10 +19,11 @@ enum KEY_STATE
 	KEY_UP
 };
 
+
 class ModuleInput : public Module
 {
 public:
-	
+
 	ModuleInput();
 	~ModuleInput();
 
@@ -48,6 +50,7 @@ public:
 	KEY_STATE joy_down;
 	KEY_STATE joy_left;
 	KEY_STATE joy_right;
+	KEY_STATE buttonRB;
 
 	KEY_STATE buttonA2;
 	KEY_STATE buttonB2;
@@ -60,6 +63,7 @@ public:
 	KEY_STATE joy_down2;
 	KEY_STATE joy_left2;
 	KEY_STATE joy_right2;
+	KEY_STATE buttonRB2;
 
 };
 

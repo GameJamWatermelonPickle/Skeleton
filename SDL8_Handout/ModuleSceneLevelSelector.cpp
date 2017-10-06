@@ -3,9 +3,11 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
+#include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 #include "ModuleSceneLevelSelector.h"
 
@@ -22,23 +24,11 @@ bool ModuleSceneLevelSelector::Start()
 {
 	LOG("Loading level selector");
 	
+
 	background = App->textures->Load("rtype/Transicion_prueba.png");
 
 	App->player->Enable();
-	App->particles->Enable();
-	App->collision->Enable();
-	App->enemies->Enable();
-	
-	// Colliders ---
-	App->collision->AddCollider({0, 224, 3930, 16}, COLLIDER_WALL);
-	App->collision->AddCollider({1375, 0, 111, 96}, COLLIDER_WALL);
-	App->collision->AddCollider({1375, 145, 111, 96}, COLLIDER_WALL);
-
-	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 600, 80);
-	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 625, 80);
-	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 640, 80);
-	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 665, 80);
+	lvlselector = true;
 	
 	// TODO 1: Add a new wave of red birds
 	
@@ -52,10 +42,8 @@ bool ModuleSceneLevelSelector::CleanUp()
 
  	App->textures->Unload(background);
 
-	App->enemies->Disable();
-	App->collision->Disable();
-	App->particles->Disable();
 	App->player->Disable();
+	lvlselector = false;
 
 	return true;
 }
@@ -68,6 +56,11 @@ update_status ModuleSceneLevelSelector::Update()
 
 	// Draw everything --------------------------------------
 	App->render->Blit(background, 0, 0, NULL);
+
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->baseball_field);
+	}
 	
 	return UPDATE_CONTINUE;
 }

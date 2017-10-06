@@ -5,7 +5,7 @@
 
 ModuleInput::ModuleInput() : Module()
 {
-	for(uint i = 0; i < MAX_KEYS; ++i)
+	for (uint i = 0; i < MAX_KEYS; ++i)
 		keyboard[i] = KEY_IDLE;
 }
 
@@ -21,7 +21,7 @@ bool ModuleInput::Init()
 	bool ret = true;
 	SDL_Init(0);
 
-	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
+	if (SDL_InitSubSystem(SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER) < 0)
 	{
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
@@ -44,6 +44,7 @@ bool ModuleInput::Init()
 			LOG("Index \'%i\' is not a compatible controller.\n", i);
 		}
 	}
+
 	return ret;
 }
 
@@ -67,6 +68,7 @@ update_status ModuleInput::PreUpdate()
 			LOG("Index \'%i\' is not a compatible controller.\n", i);
 		}
 	}
+
 	SDL_PumpEvents();
 
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
@@ -80,24 +82,24 @@ update_status ModuleInput::PreUpdate()
 	x_joy2 = SDL_JoystickGetAxis(joy2, 0);
 	y_joy2 = SDL_JoystickGetAxis(joy2, 1);
 
-
-	for(int i = 0; i < MAX_KEYS; ++i)
+	for (int i = 0; i < MAX_KEYS; ++i)
 	{
-		if(keys[i] == 1)
+		if (keys[i] == 1)
 		{
-			if(keyboard[i] == KEY_IDLE)
+			if (keyboard[i] == KEY_IDLE)
 				keyboard[i] = KEY_DOWN;
 			else
 				keyboard[i] = KEY_REPEAT;
 		}
 		else
 		{
-			if(keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+			if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
 				keyboard[i] = KEY_UP;
 			else
 				keyboard[i] = KEY_IDLE;
 		}
 	}
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_A) == 1) {
@@ -207,6 +209,20 @@ update_status ModuleInput::PreUpdate()
 			dpadRight = KEY_UP;
 		else
 			dpadRight = KEY_IDLE;
+	}
+
+	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) == 1) {
+		if (buttonRB == KEY_IDLE)
+			buttonRB = KEY_DOWN;
+		else
+			buttonRB = KEY_REPEAT;
+	}
+	else
+	{
+		if (buttonRB == KEY_REPEAT || buttonRB == KEY_DOWN)
+			buttonRB = KEY_UP;
+		else
+			buttonRB = KEY_IDLE;
 	}
 
 	if (x_joy >= -33000 && x_joy < -10000) {
@@ -417,7 +433,8 @@ update_status ModuleInput::PreUpdate()
 	}
 
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 	if (keyboard[SDL_SCANCODE_ESCAPE]) {
 		App->CleanUp();

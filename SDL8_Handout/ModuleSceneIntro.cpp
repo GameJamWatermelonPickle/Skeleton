@@ -4,6 +4,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneIntro.h"
 
@@ -19,6 +20,8 @@ ModuleSceneIntro::~ModuleSceneIntro()
 bool ModuleSceneIntro::Start()
 {
 	LOG("Loading space intro");
+
+	App->collision->CleanUp();
 	
 	background = App->textures->Load("rtype/intro.png");
 
@@ -42,7 +45,7 @@ update_status ModuleSceneIntro::Update()
 {
 	App->render->Blit(background, 0, 0, NULL);
 
-	if(App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
+	if(App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->level_selector);
 	}
