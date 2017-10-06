@@ -141,7 +141,7 @@ update_status ModulePlayer::Update()
 	}
 
 	else {
-		int speed = 1;
+		int speed = 3;
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
@@ -181,7 +181,11 @@ update_status ModulePlayer::Update()
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->dpadDown == KEY_STATE::KEY_REPEAT || App->input->joy_down == KEY_STATE::KEY_REPEAT) && collS == false)
 		{
 			position.y += speed;
-			
+			if (position.y > SCREEN_HEIGHT / 2) {
+				if (App->render->camera.y < 300) {
+					App->render->camera.y += speed;
+				}
+			}
 
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
 			{
@@ -193,6 +197,11 @@ update_status ModulePlayer::Update()
 		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->dpadUp == KEY_STATE::KEY_REPEAT || App->input->joy_up == KEY_STATE::KEY_REPEAT) && collW == false)
 		{
 			position.y -= speed;
+			if (position.y < 1000 / 2) {
+				if (App->render->camera.y > 0) {
+					App->render->camera.y -= speed;
+				}
+			}
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
 			{
 				position.y -= 20 * speed;
