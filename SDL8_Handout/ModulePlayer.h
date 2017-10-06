@@ -24,9 +24,15 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
-	Animation idle;
-	Animation up;
-	Animation down;
+	Animation idleHappy;
+	Animation idleMidle;
+	Animation idleSad;
+	Animation leftHappy;
+	Animation leftMidle;
+	Animation leftSad;
+	Animation rigthHappy;
+	Animation rigthMidle;
+	Animation rigthSad;
 	iPoint position;
 	Collider* col;
 	bool destroyed = false;
