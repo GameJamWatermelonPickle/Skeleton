@@ -175,16 +175,12 @@ update_status ModulePlayer::Update()
 	}
 
 	else {
-		int speed = 1;
+		int speed = 5;
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT))
 		{
 			position.x -= speed;
 			current_animation = &leftMiddle;
-			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
-			{
-				position.x -= 20 * speed;
-			}
 
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->dpadLeft == KEY_STATE::KEY_UP || App->input->joy_left == KEY_STATE::KEY_UP))
@@ -196,10 +192,6 @@ update_status ModulePlayer::Update()
 		{
 			position.x += speed;
 			current_animation = &rigthMiddle;
-			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
-			{
-				position.x += 20 * speed;
-			}
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->input->dpadRight == KEY_STATE::KEY_UP || App->input->joy_right == KEY_STATE::KEY_UP))
 		{
@@ -210,12 +202,6 @@ update_status ModulePlayer::Update()
 		{
 			position.y += speed;
 			current_animation = &downMiddle;
-
-			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
-			{
-				position.y += 20 * speed;
-			}
-
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->input->dpadDown == KEY_STATE::KEY_UP || App->input->joy_down == KEY_STATE::KEY_UP))
 		{
@@ -226,11 +212,6 @@ update_status ModulePlayer::Update()
 		{
 			position.y -= speed;
 			current_animation = &Up;
-			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
-			{
-				position.y -= 20 * speed;
-			}
-
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->input->dpadUp == KEY_STATE::KEY_UP || App->input->joy_up == KEY_STATE::KEY_UP))
 		{
