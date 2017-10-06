@@ -25,7 +25,7 @@ bool ModuleSceneBaseballField::Start()
 {
 	LOG("Loading space intro");
 
-	background = App->textures->Load("rtype/baseball_field.png");
+	background = App->textures->Load("rtype/beisbol_1.png");
 
 	//App->level_selector->lvlselector = false;
 
@@ -37,10 +37,10 @@ bool ModuleSceneBaseballField::Start()
 	App->render->camera.x = App->render->camera.y = 0;
 
 	// Colliders ---
-	App->collision->AddCollider({ 0, 230, 500, 10 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 0, 0, 500, 10 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 374, 0, 10, 500 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 0, 0, 10, 500 }, COLLIDER_WALL);
+	//App->collision->AddCollider({ 0, 230, 500, 10 }, COLLIDER_WALL);
+	//App->collision->AddCollider({ 0, 0, 500, 10 }, COLLIDER_WALL);
+	//App->collision->AddCollider({ 374, 0, 10, 500 }, COLLIDER_WALL);
+	//App->collision->AddCollider({ 0, 0, 10, 500 }, COLLIDER_WALL);
 
 	R.x = 0;
 	R.y = 0;
