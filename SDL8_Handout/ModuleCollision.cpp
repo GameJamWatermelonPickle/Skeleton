@@ -20,7 +20,7 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = true;
-	matrix[COLLIDER_PLAYER][COLLIDER_TOWER] = false;
+	matrix[COLLIDER_PLAYER][COLLIDER_TOWER] = true;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
@@ -42,6 +42,13 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = false;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_SHOT] = false;
 	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_TOWER] = false;
+
+	matrix[COLLIDER_TOWER][COLLIDER_WALL] = false;
+	matrix[COLLIDER_TOWER][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_TOWER][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_TOWER][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_TOWER][COLLIDER_ENEMY_SHOT] = false;
+	matrix[COLLIDER_TOWER][COLLIDER_TOWER] = false;
 }
 
 // Destructor

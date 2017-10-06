@@ -37,15 +37,25 @@ bool ModuleSceneBaseballField::Start()
 	App->render->camera.x = App->render->camera.y = 0;
 
 	// Colliders ---
-	//App->collision->AddCollider({ 0, 230, 500, 10 }, COLLIDER_WALL);
-	//App->collision->AddCollider({ 0, 0, 500, 10 }, COLLIDER_WALL);
-	//App->collision->AddCollider({ 374, 0, 10, 500 }, COLLIDER_WALL);
-	//App->collision->AddCollider({ 0, 0, 10, 500 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 153, 0, 800, 9 }, COLLIDER_WALL); //1
+	App->collision->AddCollider({ 143, 0, 8, 160 }, COLLIDER_WALL);//2
+	App->collision->AddCollider({ 26, 160, 127, 9 }, COLLIDER_WALL);//3
+	App->collision->AddCollider({ 16, 184, 7, 608 }, COLLIDER_WALL);//4
+	App->collision->AddCollider({ 26, 795, 127, 10 }, COLLIDER_WALL);//5
+	App->collision->AddCollider({ 143, 795, 8, 186 }, COLLIDER_WALL);//6
+	App->collision->AddCollider({ 153, 951, 800, 10 }, COLLIDER_WALL);//7
+	App->collision->AddCollider({ 958, 795, 10, 186 }, COLLIDER_WALL);//8
+	App->collision->AddCollider({ 955, 795, 127, 10 }, COLLIDER_WALL);//9
+	App->collision->AddCollider({ 1082, 184, 10, 608 }, COLLIDER_WALL);//10
+	App->collision->AddCollider({ 955, 160, 127, 9 }, COLLIDER_WALL);//11
+	App->collision->AddCollider({ 954, 0, 10, 160 }, COLLIDER_WALL);//12
+
+	App->collision->AddCollider({ 510,431,81,82 }, COLLIDER_TOWER);
 
 	R.x = 0;
 	R.y = 0;
-	R.h = 1000;
-	R.w = 1000;
+	R.h = 1200;
+	R.w = 1200;
 
 	color = 0;
 
