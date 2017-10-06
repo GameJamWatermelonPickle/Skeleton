@@ -91,7 +91,7 @@ update_status ModuleParticles::Update()
 		}
 	}
 
-	App->render->DrawQuad(App->baseball_field->R, 0, 0, 0, App->baseball_field->color);
+	App->render->DrawQuad(App->baseball_field->R, 27, 27, 101, App->baseball_field->color);
 
 	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_DOWN && App->baseball_field->over == false)
 		App->baseball_field->color += 10;
