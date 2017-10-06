@@ -177,39 +177,49 @@ update_status ModulePlayer::Update()
 	else {
 		int speed = 1;
 		//Dash
-		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT))
+		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
 			position.x -= speed;
+			if (position.x < App->render->camera.x + SCREEN_WIDTH / 2) {
+				if (App->render->camera.x > 0) {
+					App->render->camera.x -= speed;
+				}
+			}
 			current_animation = &leftMiddle;
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
 			{
 				position.x -= 20 * speed;
 			}
-
-		}
-		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->dpadLeft == KEY_STATE::KEY_UP || App->input->joy_left == KEY_STATE::KEY_UP))
-		{
-			current_animation = &idleMiddleLeft;
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->dpadRight == KEY_STATE::KEY_REPEAT || App->input->joy_right == KEY_STATE::KEY_REPEAT) && collD == false)
 		{
 			position.x += speed;
+			if (position.x > SCREEN_WIDTH / 2) {
+				if (App->render->camera.x < 398) {
+					App->render->camera.x += speed;
+				}
+			}
 			current_animation = &rigthMiddle;
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
 			{
+				if (position.x > SCREEN_WIDTH / 2) {
+					if (App->render->camera.x < 398) {
+						App->render->camera.x += 20 * speed;
+					}
+				}
 				position.x += 20 * speed;
 			}
-		}
-		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->input->dpadRight == KEY_STATE::KEY_UP || App->input->joy_right == KEY_STATE::KEY_UP))
-		{
-			current_animation = &idleMiddleRight;
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->dpadDown == KEY_STATE::KEY_REPEAT || App->input->joy_down == KEY_STATE::KEY_REPEAT) && collS == false)
 		{
 			position.y += speed;
-			current_animation = &downMiddle;
+			if (position.y > SCREEN_HEIGHT / 2) {
+				if (App->render->camera.y < 300) {
+					App->render->camera.y += speed;
+				}
+			}
 
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
 			{
@@ -217,25 +227,23 @@ update_status ModulePlayer::Update()
 			}
 
 		}
-		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->input->dpadDown == KEY_STATE::KEY_UP || App->input->joy_down == KEY_STATE::KEY_UP))
-		{
-			current_animation = &downMiddle;
-		}
 
-		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->dpadUp == KEY_STATE::KEY_REPEAT || App->input->joy_up == KEY_STATE::KEY_REPEAT) && collA == false)
+		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->dpadUp == KEY_STATE::KEY_REPEAT || App->input->joy_up == KEY_STATE::KEY_REPEAT) && collW == false)
 		{
 			position.y -= speed;
-			current_animation = &Up;
+			if (position.y < 1000 / 2) {
+				if (App->render->camera.y > 0) {
+					App->render->camera.y -= speed;
+				}
+			}
 			if (App->input->keyboard[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN || App->input->buttonRB == KEY_STATE::KEY_DOWN)
 			{
 				position.y -= 20 * speed;
 			}
 
 		}
-		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->input->dpadUp == KEY_STATE::KEY_UP || App->input->joy_up == KEY_STATE::KEY_UP))
-		{
-			current_animation = &Up;
-		}
+
+
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN)
 		{
