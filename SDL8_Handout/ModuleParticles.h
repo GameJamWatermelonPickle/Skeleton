@@ -51,7 +51,6 @@ private:
 public:
 
 	Particle laser;
-<<<<<<< HEAD
 	Particle laser_left;
 	Particle laser_up;
 	Particle laser_down;
@@ -60,9 +59,8 @@ public:
 	Particle big_laser_left;
 	Particle big_laser_up;
 	Particle big_laser_down;
-=======
-	Particle tower;
->>>>>>> 9650009d5a0636b45d77b5c0fc7ceb2c305f1e28
+
+
 };
 
 #endif // __MODULEPARTICLES_H__
