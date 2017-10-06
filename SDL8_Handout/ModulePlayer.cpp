@@ -62,7 +62,7 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	position.x += 1; // Automatic movement
+	
 
 	int speed = 1;
 

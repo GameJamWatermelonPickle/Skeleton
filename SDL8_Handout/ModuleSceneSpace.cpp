@@ -64,7 +64,7 @@ bool ModuleSceneSpace::CleanUp()
 update_status ModuleSceneSpace::Update()
 {
 	// Move camera forward -----------------------------
-	App->render->camera.x += 1 * SCREEN_SIZE;
+	//App->render->camera.x += 1 * SCREEN_SIZE;
 
 	// Draw everything --------------------------------------
 	App->render->Blit(background, 0, 0, NULL);
