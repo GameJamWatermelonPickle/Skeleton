@@ -50,12 +50,12 @@ bool ModuleSceneBaseballField::Start()
 	App->collision->AddCollider({ 955, 160, 127, 9 }, COLLIDER_WALL);//11
 	App->collision->AddCollider({ 954, 0, 10, 160 }, COLLIDER_WALL);//12
 
-	App->collision->AddCollider({ 513,440,80,80 }, COLLIDER_TOWER);
+	App->collision->AddCollider({ 510,431,81,82 }, COLLIDER_TOWER);
 
 	R.x = 0;
 	R.y = 0;
-	R.h = 1000;
-	R.w = 1000;
+	R.h = 1200;
+	R.w = 1200;
 
 	color = 0;
 
