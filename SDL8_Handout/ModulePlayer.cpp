@@ -320,12 +320,7 @@ update_status ModulePlayer::Update()
 		{
 			App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);//que modulo se carga al morir
 																							//death animation
-			App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE, 150);
-			App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, COLLIDER_NONE, 220);
-			App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, COLLIDER_NONE, 670);
-			App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, COLLIDER_NONE, 480);
-			App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, COLLIDER_NONE, 350);
-			destroyed = true;
+		
 		}
 
 	}

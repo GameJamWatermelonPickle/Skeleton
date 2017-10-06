@@ -3,9 +3,12 @@
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h" //should be deleted
 #include "ModuleTextures.h"
 #include "Enemy.h"
-#include "Enemy_RedBird.h"
+#include "Enemy_Left_Straight.h"
+#include "Enemy_Left_S.h"
+#include "Enemy_Left_Spiral.h"
 
 #define SPAWN_MARGIN 50
 
@@ -55,6 +58,7 @@ update_status ModuleEnemies::Update()
 
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		if(enemies[i] != nullptr) enemies[i]->Draw(sprites);
+
 
 	return UPDATE_CONTINUE;
 }
@@ -126,9 +130,17 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	{
 		switch(info.type)
 		{
-			case ENEMY_TYPES::REDBIRD:
-			enemies[i] = new Enemy_RedBird(info.x,info.y);
+			case ENEMY_TYPES::LEFT_STRAIGHT:
+			enemies[i] = new Enemy_Left_Straight(info.x,info.y);
 			break;
+
+			case ENEMY_TYPES::LEFT_S:
+				enemies[i] = new Enemy_Left_S(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::LEFT_SPIRAL:
+				enemies[i] = new Enemy_Left_Spiral(info.x, info.y);
+				break;
 		}
 	}
 }

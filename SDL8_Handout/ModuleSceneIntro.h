@@ -18,7 +18,10 @@ public:
 public:
 	
 	SDL_Texture* background = nullptr;
+	SDL_Texture* point = nullptr;
 	uint fx = 0;
+	uint positionx, positiony;
+
 };
 
 #endif // __MODULESCENEINTRO_H__
