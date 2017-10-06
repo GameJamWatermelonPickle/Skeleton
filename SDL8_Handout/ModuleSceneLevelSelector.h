@@ -1,15 +1,15 @@
-#ifndef __MODULESCENESPACE_H__
-#define __MODULESCENESPACE_H__
+#ifndef __MODULESCENELEVELSELECTOR_H__
+#define __MODULESCENELEVELSELECTOR_H__
 
 #include "Module.h"
 
 struct SDL_Texture;
 
-class ModuleSceneSpace : public Module
+class ModuleSceneLevelSelector : public Module
 {
 public:
-	ModuleSceneSpace();
-	~ModuleSceneSpace();
+	ModuleSceneLevelSelector();
+	~ModuleSceneLevelSelector();
 
 	bool Start();
 	update_status Update();

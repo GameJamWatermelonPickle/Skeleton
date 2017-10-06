@@ -10,7 +10,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModuleParticles;
-class ModuleSceneSpace;
+class ModuleSceneLevelSelector;
 class ModuleSceneIntro;
 class ModulePlayer;
 class ModuleFadeToBlack;
@@ -27,7 +27,7 @@ public:
 	ModuleRender* render;
 	ModuleInput* input;
 	ModuleTextures* textures;
-	ModuleSceneSpace* scene_space;
+	ModuleSceneLevelSelector* level_selector;
 	ModuleSceneIntro* scene_intro;
 	ModuleCollision* collision;
 	ModulePlayer* player;
