@@ -146,8 +146,8 @@ update_status ModulePlayer::Update()
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
 			position.x -= speed;
-			if (position.x > App->render->camera.x - SCREEN_WIDTH/2) {
-				if (App->render->camera.x > 398) {
+			if (position.x < App->render->camera.x + SCREEN_WIDTH/2) {
+				if (App->render->camera.x > 0) {
 					App->render->camera.x -= speed;
 				}
 			}
