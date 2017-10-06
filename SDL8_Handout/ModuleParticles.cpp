@@ -6,6 +6,8 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleInput.h"
+#include "ModuleSceneBaseballField.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -88,6 +90,11 @@ update_status ModuleParticles::Update()
 			}
 		}
 	}
+
+	App->render->DrawQuad(App->baseball_field->R, 0, 0, 0, App->baseball_field->color);
+
+	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_DOWN)
+		App->baseball_field->color += 10;
 
 	return UPDATE_CONTINUE;
 }

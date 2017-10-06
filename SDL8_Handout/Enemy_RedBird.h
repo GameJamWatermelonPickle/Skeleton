@@ -2,6 +2,7 @@
 #define __ENEMY_REDBIRD_H__
 
 #include "Enemy.h"
+#include "Path.h"
 
 class Enemy_RedBird : public Enemy
 {
@@ -10,6 +11,8 @@ private:
 	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
+
+	Path path1;
 
 public:
 

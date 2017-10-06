@@ -37,12 +37,23 @@ bool ModuleSceneBaseballField::Start()
 	App->render->camera.x = App->render->camera.y = 0;
 
 	// Colliders ---
-	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1375, 0, 111, 96 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1375, 145, 111, 96 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 230, 500, 10 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 0, 500, 10 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 374, 0, 10, 500 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 0, 10, 500 }, COLLIDER_WALL);
 
+	R.x = 0;
+	R.y = 0;
+	R.h = 1000;
+	R.w = 1000;
+
+	color = 0;
 
 	// Enemies ---
+	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 400, 30);
+	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 400, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 400, 130);
+	App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 400, 180);
 
 	return true;
 }
@@ -65,6 +76,15 @@ update_status ModuleSceneBaseballField::Update()
 {
 	App->render->Blit(background, 0, 0, NULL);
 
+
+	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	{
+		death = 0;
+		App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 500, 30);
+		App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 500, 80);
+		App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 500, 130);
+		App->enemies->AddEnemy(ENEMY_TYPES::REDBIRD, 500, 180);
+	}
 
 	return UPDATE_CONTINUE;
 }

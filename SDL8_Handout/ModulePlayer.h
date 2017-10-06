@@ -20,6 +20,13 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	uint lvl;
 
+	//colisions wall
+
+	bool collW = false;
+	bool collA = false;
+	bool collS = false;
+	bool collD = false;
+
 public:
 
 	SDL_Texture* graphics = nullptr;
