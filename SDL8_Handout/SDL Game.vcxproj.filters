@@ -80,6 +80,9 @@
     <ClInclude Include="ModuleSceneBaseballField.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleEnd.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -131,6 +134,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneBaseballField.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnd.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

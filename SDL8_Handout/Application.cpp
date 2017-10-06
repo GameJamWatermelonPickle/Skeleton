@@ -12,6 +12,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
+#include "ModuleEnd.h"
 
 Application::Application()
 {
@@ -23,11 +24,13 @@ Application::Application()
 	modules[i++] = scene_intro = new ModuleSceneIntro();
 	modules[i++] = level_selector = new ModuleSceneLevelSelector();
 	modules[i++] = baseball_field = new ModuleSceneBaseballField();
+	modules[i++] = gameover = new ModuleEnd();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();
+
 }	
 
 Application::~Application()
@@ -47,6 +50,7 @@ bool Application::Init()
 	player->Disable();
 	collision->Disable();
 	enemies->Disable();
+	gameover->Disable();
 	// ----------------------------
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
