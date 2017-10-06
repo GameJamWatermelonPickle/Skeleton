@@ -39,9 +39,9 @@ public:
 	Animation leftHappy;
 	Animation leftMiddle;
 	Animation leftSad;
-	Animation rigthHappy;
-	Animation rigthMiddle;
-	Animation rigthSad;
+	Animation rightHappy;
+	Animation rightMiddle;
+	Animation rightSad;
 	Animation downHappy;
 	Animation downMiddle;
 	Animation downSad;

@@ -35,29 +35,29 @@ ModulePlayer::ModulePlayer()
 	idleSad.PushBack({ 184,414,49,61 });
 
 	//Movimiento
-	rigthMiddle.PushBack({ 0, 75, 49, 61 });
-	rigthMiddle.PushBack({ 64,75, 49, 61 });
-	rigthMiddle.PushBack({ 127, 75, 49, 61 });
-	rigthMiddle.PushBack({ 193, 75, 49, 61 });
-	rigthMiddle.PushBack({ 255, 75, 49, 61 });
-	rigthMiddle.PushBack({ 316, 75, 49, 61 });
-	rigthMiddle.PushBack({ 370, 75, 49, 61 });
+	rightMiddle.PushBack({ 370, 75, 49, 61 });
+	rightMiddle.PushBack({ 316, 75, 49, 61 });
+	rightMiddle.PushBack({ 255, 75, 49, 61 });
+	rightMiddle.PushBack({ 193, 75, 49, 61 });
+	rightMiddle.PushBack({ 127, 75, 49, 61 });
+	rightMiddle.PushBack({ 64,75, 49, 61 });
+	rightMiddle.PushBack({ 0, 75, 49, 61 });
+	
+	rightHappy.PushBack({ 371,282,49,61 });
+	rightHappy.PushBack({ 317,282,49,61 });
+	rightHappy.PushBack({ 256,282,49,61 });
+	rightHappy.PushBack({ 194,282,49,61 });
+	rightHappy.PushBack({ 128,282,49,61 });
+	rightHappy.PushBack({ 65,282,49,61 });
+	rightHappy.PushBack({ 1,282,49,61 });
 
-	rigthHappy.PushBack({ 1,282,49,61 });
-	rigthHappy.PushBack({ 65,282,49,61 });
-	rigthHappy.PushBack({ 128,282,49,61 });
-	rigthHappy.PushBack({ 194,282,49,61 });
-	rigthHappy.PushBack({ 256,282,49,61 });
-	rigthHappy.PushBack({ 317,282,49,61 });
-	rigthHappy.PushBack({ 371,282,49,61 });
-
-	rigthSad.PushBack({ 0,489,49,61 });
-	rigthSad.PushBack({ 64,489,49,61 });
-	rigthSad.PushBack({ 127,489,49,61 });
-	rigthSad.PushBack({ 193,489,49,61 });
-	rigthSad.PushBack({ 255,489,49,61 });
-	rigthSad.PushBack({ 316,489,49,61 });
-	rigthSad.PushBack({ 370,489,49,61 });
+	rightSad.PushBack({ 370,489,49,61 });
+	rightSad.PushBack({ 316,489,49,61 });
+	rightSad.PushBack({ 255,489,49,61 });
+	rightSad.PushBack({ 193,489,49,61 });
+	rightSad.PushBack({ 127,489,49,61 });
+	rightSad.PushBack({ 64,489,49,61 });
+	rightSad.PushBack({ 0,489,49,61 });
 
 	leftMiddle.PushBack({ 369,142,49,61 });
 	leftMiddle.PushBack({ 307,142,49,61 });
@@ -112,11 +112,11 @@ ModulePlayer::ModulePlayer()
 	Up.PushBack({ 712, 0, 36, 61 });
 
 
-	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappy.speed = idleSad.speed = 0.1;
-	rigthMiddle.speed = rigthHappy.speed = rigthSad.speed = 0.1;
-	leftMiddle.speed = leftHappy.speed = leftSad.speed = 0.1;
+	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappy.speed = idleSad.speed = 0.15;
+	rightMiddle.speed = rightHappy.speed = rightSad.speed = 0.15;
+	leftMiddle.speed = leftHappy.speed = leftSad.speed = 0.15;
 	downMiddle.speed = downHappy.speed = downSad.speed = 0.03;
-	Up.speed = 0.1;
+	Up.speed = 0.15;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -182,10 +182,11 @@ update_status ModulePlayer::Update()
 			position.x -= speed;
 			if (position.x < App->render->camera.x + SCREEN_WIDTH / 2) {
 				if (App->render->camera.x > 0) {
+					current_animation = &leftMiddle;
 					App->render->camera.x -= speed;
 				}
 			}
-			current_animation = &leftMiddle;
+			
 
 
 		}
@@ -200,11 +201,17 @@ update_status ModulePlayer::Update()
 			position.x += speed;
 			if (position.x > SCREEN_WIDTH / 2) {
 				if (App->render->camera.x < 398) {
+					current_animation = &rightMiddle;
 					App->render->camera.x += speed;
 				}
+				
 			}
-			current_animation = &rigthMiddle;
+		
 
+		}
+		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->input->dpadRight == KEY_STATE::KEY_UP || App->input->joy_right == KEY_STATE::KEY_UP) && collD == false)
+		{
+			current_animation = &idleMiddleRight;
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->dpadDown == KEY_STATE::KEY_REPEAT || App->input->joy_down == KEY_STATE::KEY_REPEAT) && collS == false)
