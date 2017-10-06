@@ -133,7 +133,7 @@ bool ModulePlayer::Start()
 	position.x = 150;
 	position.y = 120;
 
-	col = App->collision->AddCollider({position.x, position.y, 32, 16}, COLLIDER_PLAYER, this);
+	col = App->collision->AddCollider({position.x + 2, position.y - 5, 45,56}, COLLIDER_PLAYER, this);
 
 	lvl = 1;
 
@@ -175,7 +175,7 @@ update_status ModulePlayer::Update()
 	}
 
 	else {
-		int speed = 5;
+		int speed = 3;
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
