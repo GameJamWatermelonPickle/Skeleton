@@ -52,6 +52,7 @@ public:
 
 	Particle explosion;
 	Particle laser;
+	Particle tower;
 };
 
 #endif // __MODULEPARTICLES_H__
