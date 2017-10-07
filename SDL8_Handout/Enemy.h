@@ -16,6 +16,7 @@ protected:
 public:
 	iPoint position;
 	SDL_Texture* textureGhost;
+
 public:
 	Enemy(int x, int y);
 	virtual ~Enemy();
