@@ -8,25 +8,21 @@
 Enemy_Up_Straight::Enemy_Up_Straight(int x, int y) : Enemy(x, y)
 {
 
-	whiteGhostRight.PushBack({ 6,6,43,43 });
-	whiteGhostRight.PushBack({ 6,52,43,43 });
-	whiteGhostRight.PushBack({ 6,6,43,43 });
-	whiteGhostRight.PushBack({ 6,100,42,42 });
+	whiteGhostRight.PushBack({ 6,6,49,42 });
+	whiteGhostRight.PushBack({9,52,43,43 });
+	whiteGhostRight.PushBack({ 7,100,42,42 });
 
-	whiteGhostLeft.PushBack({ 6,154,43,43 });
-	whiteGhostLeft.PushBack({ 6,200,43,43 });
-	whiteGhostLeft.PushBack({ 6,154,43,43 });
-	whiteGhostLeft.PushBack({ 6,248,42,42 });
+	whiteGhostLeft.PushBack({ 7,154,49,43 });
+	whiteGhostLeft.PushBack({ 7,200,43,43 });
+	whiteGhostLeft.PushBack({ 6,248,43,42 });
 
-	whiteGhostUp.PushBack({ 112,6,37,41 });
-	whiteGhostUp.PushBack({ 112,52,32,40 });
-	whiteGhostUp.PushBack({ 112,6,37,41 });
-	whiteGhostUp.PushBack({ 112,100,32,40 });
+	whiteGhostUp.PushBack({ 112,7,37,42 });
+	whiteGhostUp.PushBack({ 115,53,34,41 });
+	whiteGhostUp.PushBack({ 116,100,33,40 });
 
-	whiteGhostDown.PushBack({ 63,6,36,42 });
-	whiteGhostDown.PushBack({ 63,52,36,42 });
-	whiteGhostDown.PushBack({ 63,6,36,42 });
-	whiteGhostDown.PushBack({ 63,100,36,42 });
+	whiteGhostDown.PushBack({ 63,6,39,40 });
+	whiteGhostDown.PushBack({ 65,52,32,40 });
+	whiteGhostDown.PushBack({ 66,100,33,42 });
 
 	whiteGhostDown.speed = 0.15f;
 	whiteGhostUp.speed = 0.15f;
