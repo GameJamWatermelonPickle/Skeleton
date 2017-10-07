@@ -131,6 +131,11 @@ update_status ModuleSceneBaseballField::Update()
 	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
 		death = 0;
+		win++;
+		if (win == 2) {
+			App->fade->FadeToBlack(this, (Module*)App->girl);
+		}
+
 		for (int i = 0; i < 4; i++)
 		{
 			random[i] = rand() % 3;

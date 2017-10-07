@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneBaseballField.h"
+#include "ModuleSceneGirl.h"
 
 
 
@@ -165,6 +166,7 @@ bool ModulePlayer::Start()
 	col = App->collision->AddCollider({position.x + 2, position.y - 5, 45,56}, COLLIDER_PLAYER, this);
 
 	current_animation = &idleHappyRight2;
+	Combocount = 0;
 
 	lvl = 1;
 	superpower = 3;
@@ -229,12 +231,13 @@ update_status ModulePlayer::Update()
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
-			if (personality == 0)
+			/*if (personality == 0)
 				current_animation = &leftHappy;
 			else if (personality == 1)
 				current_animation = &leftMiddle;
 			else
 				current_animation = &leftSad;
+				*/
 			position.x -= speed;
 			if (position.x < App->render->camera.x + SCREEN_WIDTH / 2) {
 				if (App->render->camera.x > 0) {
@@ -254,18 +257,19 @@ update_status ModulePlayer::Update()
 				current_animation = &idleMiddleLeft;
 			else
 				current_animation = &idleSadLeft;
+				
 
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->dpadRight == KEY_STATE::KEY_REPEAT || App->input->joy_right == KEY_STATE::KEY_REPEAT) && collD == false)
 		{
-			if (personality == 0)
+			/*if (personality == 0)
 				current_animation = &rightHappy;
 			else if (personality == 1)
 				current_animation = &rightMiddle;
 			else
 				current_animation = &rightSad;
-			
+			*/
 			position.x += speed;
 			if (position.x > SCREEN_WIDTH / 2) {
 				if (App->render->camera.x < 398) {
@@ -291,12 +295,13 @@ update_status ModulePlayer::Update()
 		{
 			position.y += speed;
 
-			if (personality == 0)
+			/*if (personality == 0)
 				current_animation = &downHappy;
 			else if (personality == 1)
 				current_animation = &downMiddle;
 			else
 				current_animation = &downSad;
+				*/
 
 
 			if (position.y > SCREEN_HEIGHT / 2) {
@@ -316,6 +321,7 @@ update_status ModulePlayer::Update()
 				current_animation = &idleMiddleDown;
 			else
 				current_animation = &idleSadDown;
+				
 
 		}
 
@@ -323,7 +329,7 @@ update_status ModulePlayer::Update()
 		{
 			position.y -= speed;
 
-			current_animation = &Up;
+			//current_animation = &Up;
 
 			if (position.y < 1000 / 2) {
 				if (App->render->camera.y > 0) {
@@ -341,35 +347,56 @@ update_status ModulePlayer::Update()
 
 
 
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN)
-		{
-			if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
-				App->particles->AddParticle(App->particles->laser, position.x + 20, position.y + 15, COLLIDER_PLAYER_SHOT);
-		
-			if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
-				App->particles->AddParticle(App->particles->laser_left, position.x - 20, position.y + 15, COLLIDER_PLAYER_SHOT);
-
-			if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
-				App->particles->AddParticle(App->particles->laser_down, position.x + 4, position.y + 30, COLLIDER_PLAYER_SHOT);
-
-			if (current_animation == &idleUp || current_animation == &Up)
-				App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->buttonY == KEY_STATE::KEY_DOWN) {
+			App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+			current_animation = &Up;
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonX == KEY_STATE::KEY_DOWN && superpower > 0)
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN) {
+			App->particles->AddParticle(App->particles->laser_down, position.x + 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+			if (personality == 0)
+				current_animation = &idleHappyDown;
+			else if (personality == 1)
+				current_animation = &idleMiddleDown;
+			else
+				current_animation = &idleSadDown;
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN || App->input->buttonB == KEY_STATE::KEY_DOWN) {
+			App->particles->AddParticle(App->particles->laser, position.x + 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+			if (personality == 0)
+				current_animation = &idleHappyRight2;
+			else if (personality == 1)
+				current_animation = &idleMiddleRight;
+			else
+				current_animation = &idleSadRight;
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN || App->input->buttonX == KEY_STATE::KEY_DOWN) {
+			App->particles->AddParticle(App->particles->laser_left, position.x - 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+			if (personality == 0)
+				current_animation = &idleHappyLeft;
+			else if (personality == 1)
+				current_animation = &idleMiddleLeft;
+			else
+				current_animation = &idleSadLeft;
+		}
+
+
+		if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0)
 		{
 			if (superpower != 0)
 			{
-				if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
+				if (App->input->buttonB == KEY_STATE::KEY_REPEAT)
 					App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
 
-				if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
+				if (App->input->buttonX == KEY_STATE::KEY_REPEAT)
 					App->particles->AddParticle(App->particles->big_laser_left, position.x - 20, position.y + 12, COLLIDER_PLAYER_SHOT);
 
-				if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
+				if (App->input->buttonA == KEY_STATE::KEY_REPEAT)
 					App->particles->AddParticle(App->particles->big_laser_down, position.x - 4, position.y + 30, COLLIDER_PLAYER_SHOT);
 
-				if (current_animation == &idleUp || current_animation == &Up)
+				if (App->input->buttonY == KEY_STATE::KEY_REPEAT)
 					App->particles->AddParticle(App->particles->big_laser_up, position.x - 4, position.y - 30, COLLIDER_PLAYER_SHOT);
 
 				superpower -= 1;
@@ -401,6 +428,19 @@ update_status ModulePlayer::Update()
 	{
 		App->render->Blit(graphicsLife, App->render->camera.x+x, App->render->camera.y + 650, &rectLife.GetCurrentFrame());
 	}
+
+	if (App->particles->Combo >= 5) {
+		App->particles->Combo = 0;
+		superpower += 1;
+		if (lvl == 1) {
+			App->baseball_field->color - 10;
+		}
+		if (lvl == 2) {
+			App->girl->color - 10;
+		}
+	}
+
+	Combocount++;
 
 	return UPDATE_CONTINUE;
 }

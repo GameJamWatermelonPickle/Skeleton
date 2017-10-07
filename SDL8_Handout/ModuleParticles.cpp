@@ -8,6 +8,7 @@
 #include "ModuleParticles.h"
 #include "ModuleInput.h"
 #include "ModuleSceneBaseballField.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -20,28 +21,28 @@ ModuleParticles::ModuleParticles()
 	laser.anim.PushBack({52, 2, 39, 21 });
 	laser.anim.PushBack({ 104, 2, 39, 21 });
 	laser.anim.speed = 0.2f;
-	laser.speed.x = 5;
+	laser.speed.x = 7.5;
 	laser.life = 3000;
 
 	laser_left.anim.PushBack({ 1, 29, 39, 21 });
 	laser_left.anim.PushBack({ 52, 29, 39, 21 });
 	laser_left.anim.PushBack({ 104, 29, 39, 21 });
 	laser_left.anim.speed = 0.2f;
-	laser_left.speed.x = -5;
+	laser_left.speed.x = -7.5;
 	laser_left.life = 3000;
 
 	laser_up.anim.PushBack({ 37, 62, 21, 39 });
 	laser_up.anim.PushBack({ 37, 113, 21, 39 });
 	laser_up.anim.PushBack({ 37, 167, 21, 39 });
 	laser_up.anim.speed = 0.2f;
-	laser_up.speed.y = -5;
+	laser_up.speed.y = -7.5;
 	laser_up.life = 3000;
 
 	laser_down.anim.PushBack({ 3, 62, 21, 39 });
 	laser_down.anim.PushBack({ 3, 113, 21, 39 });
 	laser_down.anim.PushBack({ 3, 167, 21, 39 });
 	laser_down.anim.speed = 0.2f;
-	laser_down.speed.y = 5;
+	laser_down.speed.y = 7.5;
 	laser_down.life = 3000;
 
 
@@ -68,6 +69,7 @@ ModuleParticles::ModuleParticles()
 	big_laser_down.anim.speed = 0.1f;
 	big_laser_down.speed.y = 5;
 	big_laser_down.life = 3000;
+
 }
 
 ModuleParticles::~ModuleParticles()
@@ -78,7 +80,7 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	graphics = App->textures->Load("rtype/particles2.png");
-
+	Combo = 0;
 	// Load particles fx particle
 
 	return true;
@@ -161,12 +163,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
    	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
-		if(active[i] != nullptr && active[i]->collider == c1)
+		if(active[i] != nullptr && active[i]->collider == c1 && c1->type == COLLIDER_PLAYER_SHOT)
 		{
-			if (App->baseball_field->color > 1)
-			{
-				App->baseball_field->color -= 1;
-				
+			App->baseball_field->death++;
+			if (App->player->Combocount < 400) {
+				Combo++;
+				App->player->Combocount = 0;
 			}
 			delete active[i];
 			active[i] = nullptr;
