@@ -10,6 +10,7 @@
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneGirl.h"
+#include "ModuleAudio.h"
 #include "Module.h"
 
 
@@ -148,6 +149,7 @@ ModulePlayer::ModulePlayer()
 	idleUp.speed = idleHappyDown.speed = idleMiddleDown.speed = idleSadDown.speed = 0.15;
 	Up.speed = 0.15;
 	
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -160,6 +162,8 @@ bool ModulePlayer::Start()
 
 	graphics = App->textures->Load("rtype/Sprites_Big.png");
 	graphicsLife = App->textures->Load("rtype/superPower.png");
+	shoot = App->audio->LoadFX("Audios/sound_effects/shoot.wav");
+
 	destroyed = false;
 	position.x = 150;
 	position.y = 120;
@@ -354,6 +358,7 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->buttonY == KEY_STATE::KEY_DOWN) {
 			App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
 			current_animation = &Up;
+			App->audio->PlayFX(shoot);
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN) {
@@ -364,6 +369,7 @@ update_status ModulePlayer::Update()
 				current_animation = &idleMiddleDown;
 			else
 				current_animation = &idleSadDown;
+			App->audio->PlayFX(shoot);
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN || App->input->buttonB == KEY_STATE::KEY_DOWN) {
@@ -374,6 +380,7 @@ update_status ModulePlayer::Update()
 				current_animation = &idleMiddleRight;
 			else
 				current_animation = &idleSadRight;
+			App->audio->PlayFX(shoot);
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN || App->input->buttonX == KEY_STATE::KEY_DOWN) {
@@ -384,6 +391,7 @@ update_status ModulePlayer::Update()
 				current_animation = &idleMiddleLeft;
 			else
 				current_animation = &idleSadLeft;
+			App->audio->PlayFX(shoot);
 		}
 
 

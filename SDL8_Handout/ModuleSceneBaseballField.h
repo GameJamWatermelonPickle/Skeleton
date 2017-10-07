@@ -31,6 +31,7 @@ public:
 	bool check_audio = true;
 	bool check_audio2 = true;
 	int win;
+	uint respawn;
 };
 
 #endif // __MODULESCENEINTRO_H__

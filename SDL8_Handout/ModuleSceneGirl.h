@@ -21,10 +21,9 @@ public:
 	SDL_Texture* background = nullptr;
 	SDL_Rect R;
 	uint fx = 0;
-	//uint color = 0;
+	uint respawn;
 	uint cont;
 	uint random[4];
-	//bool over = false;
 	uint death = 0;
 };
 
