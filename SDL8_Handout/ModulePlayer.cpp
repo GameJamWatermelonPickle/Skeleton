@@ -24,10 +24,10 @@ ModulePlayer::ModulePlayer()
 	idleMiddleLeft.PushBack({ 364, 0, 49, 61 });
 	idleMiddleLeft.PushBack({ 426, 0, 49, 61 });
 
-	idleHappyRight.PushBack({ 1,207,49,61 });
-	idleHappyRight.PushBack({ 62,207,49,61 });
-	idleHappyRight.PushBack({ 124,207,49,61 });
-	idleHappyRight.PushBack({ 185,207,49,61 });
+	idleHappyRight2.PushBack({ 1,207,49,61 });
+	idleHappyRight2.PushBack({ 62,207,49,61 });
+	idleHappyRight2.PushBack({ 124,207,49,61 });
+	idleHappyRight2.PushBack({ 185,207,49,61 });
 
 	idleHappyLeft.PushBack({242,207,49,61});
 	idleHappyLeft.PushBack({304,207,49,61});
@@ -122,7 +122,7 @@ ModulePlayer::ModulePlayer()
 	Up.PushBack({ 712, 0, 36, 61 });
 
 
-	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappyRight.speed = idleHappyLeft.speed = idleSadRight.speed= idleSadLeft.speed = 0.15;
+	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappyRight2.speed = idleHappyLeft.speed = idleSadRight.speed= idleSadLeft.speed = 0.15;
 	rightMiddle.speed = rightHappy.speed = rightSad.speed = 0.15;
 	leftMiddle.speed = leftHappy.speed = leftSad.speed = 0.15;
 	downMiddle.speed = downHappy.speed = downSad.speed = 0.03;
@@ -181,11 +181,11 @@ update_status ModulePlayer::Update()
 	if (App->level_selector->lvlselector == true)
 	{
 		if (personality == 0)
-			current_animation = &idleHappyLeft;
+			current_animation = &idleHappyRight2;
 		else if (personality == 1)
-			current_animation = &idleMiddleLeft;
+			current_animation = &idleMiddleRight;
 		else
-			current_animation = &idleSadLeft;
+			current_animation = &idleSadRight;
 		if (lvl == 1) {
 			position.x = 54;
 			position.y = 95;
@@ -203,12 +203,7 @@ update_status ModulePlayer::Update()
 
 	else {
 		int speed = 4;
-		if (personality == 0)
-			current_animation = &idleHappyLeft;
-		else if (personality == 1)
-			current_animation = &idleMiddleLeft;
-		else
-			current_animation = &idleSadLeft;
+		
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
@@ -262,7 +257,7 @@ update_status ModulePlayer::Update()
 		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->input->dpadRight == KEY_STATE::KEY_UP || App->input->joy_right == KEY_STATE::KEY_UP) && collD == false)
 		{
 			if (personality == 0)
-				current_animation = &idleHappyRight;
+				current_animation = &idleHappyRight2;
 			else if (personality == 1)
 				current_animation = &idleMiddleRight;
 			else

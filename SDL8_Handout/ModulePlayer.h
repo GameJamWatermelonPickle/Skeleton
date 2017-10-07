@@ -32,7 +32,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 
-	Animation idleHappyRight;
+	Animation idleHappyRight2;
 	Animation idleHappyLeft;
 
 	Animation idleMiddleRight;
