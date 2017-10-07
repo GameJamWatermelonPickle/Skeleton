@@ -70,7 +70,7 @@ bool ModuleSceneGirl::Start()
 	App->collision->AddCollider({ 730, 229, 61, 82 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 730, 741, 61, 82 }, COLLIDER_WALL);
 
-	App->collision->AddCollider({ 510,431,81,84 }, COLLIDER_TOWER);
+	App->collision->AddCollider({ 510,429,81,86 }, COLLIDER_TOWER);
 
 	App->audio->PlayFX(respawn);
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_S, 27, 375);
