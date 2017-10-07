@@ -30,6 +30,7 @@ public:
 	uint cont = 0;
 	bool check_audio = true;
 	bool check_audio2 = true;
+	int win;
 };
 
 #endif // __MODULESCENEINTRO_H__
