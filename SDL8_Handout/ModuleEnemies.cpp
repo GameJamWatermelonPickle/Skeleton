@@ -15,6 +15,9 @@
 #include "Enemy_Up_Straight.h"
 #include "Enemy_Up_S.h"
 #include "Enemy_Up_Spiral.h"
+#include "Enemy_Down_S.h"
+#include "Enemy_Down_Straight.h"
+#include "Enemy_Down_Spiral.h"
 
 
 #define SPAWN_MARGIN 50
@@ -170,6 +173,15 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				break;
 			case ENEMY_TYPES::UP_SPIRAL:
 				enemies[i] = new Enemy_Up_Spiral(info.x, info.y);
+				break;
+			case ENEMY_TYPES::DOWN_S:
+				enemies[i] = new Enemy_Down_S(info.x, info.y);
+				break;
+			case ENEMY_TYPES::DOWN_STRAIGHT:
+				enemies[i] = new Enemy_Down_Straight(info.x, info.y);
+				break;
+			case ENEMY_TYPES::DOWN_SPIRAL:
+				enemies[i] = new Enemy_Down_Spiral(info.x, info.y);
 				break;
 
 		}
