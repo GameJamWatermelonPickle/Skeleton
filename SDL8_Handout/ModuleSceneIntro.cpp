@@ -67,7 +67,7 @@ update_status ModuleSceneIntro::Update()
 
 
 
-	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->joy_up == KEY_DOWN && App->fade->IsFading() == false || App->input->dpadUp == KEY_DOWN && App->fade->IsFading() == false)
+	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{
 		if (positiony == 246) {
 			positionx = 139;
@@ -79,7 +79,7 @@ update_status ModuleSceneIntro::Update()
 		}
 		App->audio->PlayFX(App->audio->LoadFX("Audios/sound_effects/Sonrisa/menu.wav"));
 	}
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_DOWN && App->fade->IsFading() == false || App->input->joy_down == KEY_DOWN && App->fade->IsFading() == false || App->input->joy_down == KEY_DOWN && App->fade->IsFading() == false || App->input->joy_down == KEY_DOWN && App->fade->IsFading() == false || App->input->dpadDown == KEY_DOWN && App->fade->IsFading() == false)
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{
 		if (positiony == 416) {
 			positionx = 110;

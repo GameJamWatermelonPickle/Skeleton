@@ -195,19 +195,11 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c1, c2);
-			if (c2->type != COLLIDER_ENEMY && c2->type != COLLIDER_WALL &&c2->type != COLLIDER_PLAYER_SHOT) {
-				enemies[i]->hitpoints -= 2;
-			}
-			else if (c2->type == COLLIDER_PLAYER_SHOT) {
-				enemies[i]->hitpoints--;
-			}
-			if (enemies[i]->hitpoints == 0) {
+			if (c2->type != COLLIDER_ENEMY) {
 				delete enemies[i];
 				enemies[i] = nullptr;
 				break;
 			}
-			}
-
-		
 		}
 	}
+}

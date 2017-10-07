@@ -239,20 +239,6 @@ update_status ModuleInput::PreUpdate()
 			buttonRB = KEY_IDLE;
 	}
 
-	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_LEFTSHOULDER) == 1) {
-		if (buttonLB == KEY_IDLE)
-			buttonLB = KEY_DOWN;
-		else
-			buttonLB = KEY_REPEAT;
-	}
-	else
-	{
-		if (buttonLB == KEY_REPEAT || buttonLB == KEY_DOWN)
-			buttonLB = KEY_UP;
-		else
-			buttonLB = KEY_IDLE;
-	}
-
 	if (x_joy >= -33000 && x_joy < -10000) {
 		if (joy_left == KEY_IDLE)
 			joy_left = KEY_DOWN;
