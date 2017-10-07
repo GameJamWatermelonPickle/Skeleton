@@ -19,6 +19,8 @@ public:
 public:
 
 	SDL_Texture* background = nullptr;
+	SDL_Texture* background2 = nullptr;
+	SDL_Texture* background3 = nullptr;
 	SDL_Rect R;
 	uint fx = 0;
 	uint color = 0;

@@ -24,7 +24,8 @@ bool ModuleSceneBaseballField::Start()
 	LOG("Loading space intro");
 
 	background = App->textures->Load("rtype/beisbol_1.png");
-
+	background2 = App->textures->Load("rtype/beisbol_2.png");
+	background3 = App->textures->Load("rtype/beisbol_3.png");
 	//App->level_selector->lvlselector = false;
 
 	App->player->Enable();
@@ -80,7 +81,19 @@ bool ModuleSceneBaseballField::CleanUp()
 // Update: draw background
 update_status ModuleSceneBaseballField::Update()
 {
-	App->render->Blit(background, 0, 0, NULL);
+	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 60)
+	{
+		App->render->Blit(background3, 0, 0, NULL);
+	}
+	else if (App->baseball_field->color <= 59 && App->baseball_field->color >=40)
+	{
+		App->render->Blit(background2, 0, 0, NULL);
+	}
+	else
+	{
+		App->render->Blit(background, 0, 0, NULL);
+	}
+	
 
 	if (color >= 250) {
 		App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);
