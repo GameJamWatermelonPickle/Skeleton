@@ -20,11 +20,8 @@ public:
 	Animation whiteGhostLeft;
 	Animation whiteGhostRight;
 	Animation blueGhostUp;
-<<<<<<< HEAD
 	Animation blueGhostRight;
-=======
-	//Animation blueGhostDown;
->>>>>>> 75734b699de3b5c2fbfc0d68334780121a790397
+	Animation blueGhostDown;
 	Animation blueGhostLeft;
 	Animation redGhostUp;
 	Animation redGhostDown;
