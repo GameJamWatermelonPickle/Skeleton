@@ -92,5 +92,6 @@ void Enemy::Draw(SDL_Texture* sprites)
 void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
 	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	App->baseball_field->color += 10;
 	App->baseball_field->death++;
 }

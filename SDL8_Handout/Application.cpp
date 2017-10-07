@@ -2,7 +2,9 @@
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleSceneBaseballField.h"
@@ -21,6 +23,7 @@ Application::Application()
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = scene_intro = new ModuleSceneIntro();
 	modules[i++] = level_selector = new ModuleSceneLevelSelector();
 	modules[i++] = baseball_field = new ModuleSceneBaseballField();

@@ -1,15 +1,20 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
+#include "ModuleAudio.h"
+#include <time.h>
+#include <stdlib.h>
 #include "SDL_mixer/include/SDL_mixer.h"
 
 ModuleSceneBaseballField::ModuleSceneBaseballField()
@@ -35,6 +40,8 @@ bool ModuleSceneBaseballField::Start()
 
 	App->render->camera.x = App->render->camera.y = 0;
 
+	App->audio->LoadMusic("Audios/sound_effects/sonrisa/VidaAlta.ogg");
+
 	// Colliders ---
 	App->collision->AddCollider({ 153, 0, 800, 9 }, COLLIDER_WALL); //1
 	App->collision->AddCollider({ 143, 0, 8, 160 }, COLLIDER_WALL);//2
@@ -57,9 +64,15 @@ bool ModuleSceneBaseballField::Start()
 	R.w = 1200;
 
 	color = 0;
+	cont = 0;
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
+	App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
+	App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::DOWN_STRAIGHT, 526, 896);
+
+	//App->enemies->AddEnemy(ENEMY_TYPES::DOWN_STRAIGHT, 526, 896);
 
 	return true;
 }
@@ -72,6 +85,7 @@ bool ModuleSceneBaseballField::CleanUp()
 	App->collision->Disable();
 	App->particles->Disable();
 	App->player->Disable();
+	App->audio->UnloadMusic();
 	App->textures->Unload(background);
 
 
@@ -81,6 +95,17 @@ bool ModuleSceneBaseballField::CleanUp()
 // Update: draw background
 update_status ModuleSceneBaseballField::Update()
 {
+
+	if (cont < 100)
+		cont++;
+	if (cont == 100) {
+		App->enemies->AddEnemy(ENEMY_TYPES::LEFT_SPIRAL, 27, 375);
+		App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
+		App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
+		App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
+		cont++;
+	}
+
 
 	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 60)
 	{
@@ -94,6 +119,7 @@ update_status ModuleSceneBaseballField::Update()
 	{
 		App->render->Blit(background, 0, 0, NULL);
 	}
+
 	
 
 	if (color >= 250) {
@@ -101,19 +127,42 @@ update_status ModuleSceneBaseballField::Update()
 		over = true;
 	}
 
-	//if (check_audio) {
-	//	App->audio->play_music1();
-	//	check_audio = false;
-	//}
 
-	//if(check_audio2 == true && color >= 150){
-	//	App->audio->play_music2();
-	//	check_audio = false;
-	//}
-
-
-	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
+	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
+		death = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			random[i] = rand() % 3;
+		}
+
+		if (random[0] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
+		else if (random[0] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::LEFT_S, 27, 375);
+		else if (random[0] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::LEFT_SPIRAL, 27, 375);
+
+		if (random[1] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
+		else if (random[1] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
+		else if (random[1] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_SPIRAL, 1050, 375);
+
+		if (random[2] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::UP_STRAIGHT, 526, 8);
+		else if (random[2] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
+		else if (random[2] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
+
+		if (random[3] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_STRAIGHT, 526, 896);
+		else if (random[3] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_S, 526, 896);
+		else if (random[3] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
 
 	}
 
