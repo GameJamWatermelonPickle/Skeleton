@@ -114,7 +114,7 @@ ModulePlayer::ModulePlayer()
 	downHappy.PushBack({ 656,138,31,61 });
 	downHappy.PushBack({ 699,138,31,61 });
 
-	downSad.PushBack({ 499,274,31,61 });
+	downSad.PushBack({ 500,342,31,61 });
 	downSad.PushBack({ 543,273,31,61 });
 	downSad.PushBack({ 584,273,31,61 });
 	downSad.PushBack({ 620,273,31,61 });
@@ -435,12 +435,9 @@ update_status ModulePlayer::Update()
 	if (App->particles->Combo >= 5) {
 		App->particles->Combo = 0;
 		superpower += 1;
-		if (lvl == 1) {
+		
 			App->baseball_field->color - 10;
-		}
-		if (lvl == 2) {
-			App->girl->color - 10;
-		}
+		
 	}
 
 	Combocount++;
