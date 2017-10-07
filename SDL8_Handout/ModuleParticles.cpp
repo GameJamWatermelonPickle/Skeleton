@@ -71,6 +71,17 @@ ModuleParticles::ModuleParticles()
 	big_laser_down.speed.y = 5;
 	big_laser_down.life = 3000;
 
+	ghost_dead.anim.PushBack({112,278,46,46});
+	ghost_dead.anim.PushBack({ 239,278,46,46 });
+	ghost_dead.anim.PushBack({ 47,342,46,46});
+	ghost_dead.anim.PushBack({ 176,341,46,46 });
+	ghost_dead.anim.PushBack({ 304,342,46,46 });
+	ghost_dead.anim.PushBack({ 111,406,46,46 });
+	ghost_dead.life = 300;
+	ghost_dead.anim.speed = 0.2f;
+
+
+
 }
 
 ModuleParticles::~ModuleParticles()
@@ -167,7 +178,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if(active[i] != nullptr && active[i]->collider == c1 && c1->type == COLLIDER_PLAYER_SHOT)
 		{
-			if (App->player->Combocount < 400) {
+			if (c2->type == COLLIDER_ENEMY)
+				App->particles->AddParticle(App->particles->ghost_dead, c2->rect.x, c2->rect.y, COLLIDER_NONE, NULL);
+			
+			
+	if (App->player->Combocount < 400) {
 				Combo++;
 				App->player->Combocount = 0;
 			}

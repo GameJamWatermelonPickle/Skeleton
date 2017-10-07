@@ -4,6 +4,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneIntro.h"
@@ -20,6 +21,8 @@ ModuleSceneIntro::~ModuleSceneIntro()
 bool ModuleSceneIntro::Start()
 {
 	LOG("Loading space intro");
+
+	App->audio->LoadMusic("Audios/sound_effects/sonrisa/intro.ogg");
 
 	App->collision->CleanUp();
 	
@@ -61,6 +64,8 @@ update_status ModuleSceneIntro::Update()
 			return update_status::UPDATE_STOP;
 		}
 	}
+
+
 
 	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{

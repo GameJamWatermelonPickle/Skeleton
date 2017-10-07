@@ -30,7 +30,8 @@ bool ModuleSceneGirl::Start()
 
 
 	background = App->textures->Load("rtype/restaurante_1.png");
-
+	background2 = App->textures->Load("rtype/restaurante_2.png");
+	background3 = App->textures->Load("rtype/restaurante_3.png"),
 	//App->level_selector->lvlselector = false;
 
 	App->player->Enable();
@@ -101,6 +102,8 @@ bool ModuleSceneGirl::CleanUp()
 	App->particles->Disable();
 	App->player->Disable();
 	App->textures->Unload(background);
+	App->textures->Unload(background2);
+	App->textures->Unload(background3);
 
 
 	return true;
@@ -109,7 +112,19 @@ bool ModuleSceneGirl::CleanUp()
 // Update: draw background
 update_status ModuleSceneGirl::Update()
 {
-
+	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 150)
+	{
+		App->render->Blit(background3, 0, 0, NULL);
+		
+	}
+	else if (App->baseball_field->color <= 149 && App->baseball_field->color >= 80)
+	{
+		App->render->Blit(background2, 0, 0, NULL);
+	}
+	else
+	{
+		App->render->Blit(background, 0, 0, NULL);
+	}
 	if (cont < 100)
 		cont++;
 	if (cont == 100) {
@@ -166,7 +181,7 @@ update_status ModuleSceneGirl::Update()
 			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
 	}
 
-	App->render->Blit(background, 0, 0, NULL);
+	//App->render->Blit(background, 0, 0, NULL);
 
 
 	return UPDATE_CONTINUE;
