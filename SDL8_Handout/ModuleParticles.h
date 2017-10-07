@@ -60,6 +60,8 @@ public:
 	Particle big_laser_up;
 	Particle big_laser_down;
 
+	Particle ghost_dead;
+
 	uint Combo;
 
 

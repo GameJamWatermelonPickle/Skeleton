@@ -4,6 +4,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneIntro.h"
@@ -61,6 +62,8 @@ update_status ModuleSceneIntro::Update()
 			return update_status::UPDATE_STOP;
 		}
 	}
+
+
 
 	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{

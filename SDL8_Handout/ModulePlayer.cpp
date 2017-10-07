@@ -452,6 +452,7 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && (c2->type == COLLIDER_WALL || c2->type == COLLIDER_TOWER)) {
+	
 		if ((c1->rect.x + c1->rect.w) - c2->rect.x != 1 && (c2->rect.x + c2->rect.w) - c1->rect.x != 1 && (c2->rect.y + c2->rect.h) - c1->rect.y == 1 && (c1->rect.y + c1->rect.h) - c2->rect.y != 1)
 
 			collW = true;
