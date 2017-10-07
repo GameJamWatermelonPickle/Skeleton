@@ -10,6 +10,7 @@
 #include "Enemy_Left_S.h"
 #include "Enemy_Left_Spiral.h"
 
+
 #define SPAWN_MARGIN 50
 
 ModuleEnemies::ModuleEnemies()
@@ -141,6 +142,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::LEFT_SPIRAL:
 				enemies[i] = new Enemy_Left_Spiral(info.x, info.y);
 				break;
+
 		}
 	}
 }

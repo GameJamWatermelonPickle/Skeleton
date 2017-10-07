@@ -60,7 +60,7 @@ bool ModuleSceneBaseballField::Start()
 	color = 0;
 
 	// Enemies ---
-	
+	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
 
 	return true;
 }

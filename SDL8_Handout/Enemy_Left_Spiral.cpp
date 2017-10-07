@@ -18,13 +18,14 @@ Enemy_Left_Spiral::Enemy_Left_Spiral(int x, int y) : Enemy(x, y)
 
 	animation = &fly;
 
-
+	/*
 	movement.PushBack({ 2.0f,-1.0f }, 251, &fly);
 	movement.PushBack({ 2.0f,1.0f }, 180, &fly);
-	movement.PushBack({ -1.0f,2.0f },180, &fly);
+	movement.PushBack({ -1.0f,2.0f }, 180, &fly);
 	movement.PushBack({ -2.0f,-1.0f }, 150, &fly);
 	movement.PushBack({ 2.0f,-1.0f }, 251, &fly);
-
+	*/
+	movement.PushBack({0.0f,0.0f }, 251, &fly);
 	originalpos.x = x;
 	originalpos.y = y;
 

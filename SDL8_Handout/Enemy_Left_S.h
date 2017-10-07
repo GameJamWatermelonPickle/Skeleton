@@ -1,5 +1,5 @@
-#ifndef __ENEMY_LEFT_STRAIGHT_H__
-#define __ENEMY_LEFT_STRAIGHT_H__
+#ifndef __ENEMY_LEFT_S_H__
+#define __ENEMY_LEFT_S_H__
 
 #include "Enemy.h"
 #include "Path.h"
