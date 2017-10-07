@@ -7,28 +7,25 @@
 
 Enemy_Down_S::Enemy_Down_S(int x, int y) : Enemy(x, y)
 {
-	redGhostRight.PushBack({ 6,7,43,43 });
-	redGhostRight.PushBack({ 168,53,43,43 });
-	redGhostRight.PushBack({ 168,7,43,43 });
-	redGhostRight.PushBack({ 168,101,42,42 });
+	redGhostRight.PushBack({ 168,7,49,42 });
+	redGhostRight.PushBack({ 171,53,43,43 });
+	redGhostRight.PushBack({ 169,101,42,42});
 	
 
-	redGhostLeft.PushBack({ 168,155,43,43 });
-	redGhostLeft.PushBack({ 168,201,43,43 });
-	redGhostLeft.PushBack({ 168,155,43,43 });
-	redGhostLeft.PushBack({ 168,249,42,42 });
+	redGhostLeft.PushBack({ 169,153,49,43 });
+	redGhostLeft.PushBack({ 169,199,43,43 });
+	redGhostLeft.PushBack({ 168,247,43,42 });
 	
 
-	redGhostUp.PushBack({ 274,8,35,42 });
-	redGhostUp.PushBack({ 274,54,33,41 });
-	redGhostUp.PushBack({ 274,8,35,42 });
-	redGhostUp.PushBack({ 274,103,32,40 });
+	redGhostDown.PushBack({ 274,8,37,42 });
+	redGhostDown.PushBack({ 277,54,34,41 });
+	redGhostDown.PushBack({ 278,101,33,40 });
 	
 
-	redGhostDown.PushBack({ 225,7,35,40 });
+	redGhostDown.PushBack({ 225,7,39,40 });
 	redGhostDown.PushBack({ 225,53,32,40 });
-	redGhostDown.PushBack({ 225,7,35,40 });
-	redGhostDown.PushBack({ 225,101,32,42 });
+	redGhostDown.PushBack({ 225,101,33,42 });
+
 	redGhostDown.speed = 0.15f;
 	redGhostLeft.speed = 0.15f;
 	redGhostUp.speed = 0.15f;
@@ -95,8 +92,9 @@ void Enemy_Down_S::Move()
 
 
 void Enemy_Down_S::OnCollision(Collider* c1, Collider* c2) {
-	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
+	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 	{
+		if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
 		App->baseball_field->color += 10;
 		App->baseball_field->death++;
 	}

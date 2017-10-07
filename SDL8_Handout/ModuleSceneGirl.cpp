@@ -40,6 +40,7 @@ bool ModuleSceneGirl::Start()
 	App->audio->LoadMusic("Audios/sound_effects/sonrisa/VidaAlta.ogg");
 
 	App->player->lvl = 2;
+	App->baseball_field->death = 0;
 
 	App->render->camera.x = App->render->camera.y = 0;
 
@@ -125,11 +126,11 @@ update_status ModuleSceneGirl::Update()
 		App->baseball_field->color = 250;
 	}
 
-
-	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	
+	if (App->baseball_field->death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
 		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
-		death = 0;
+		App->baseball_field->death = 0;
 		for (int i = 0; i < 4; i++)
 		{
 			random[i] = rand() % 3;

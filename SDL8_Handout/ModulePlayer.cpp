@@ -391,6 +391,11 @@ update_status ModulePlayer::Update()
 		{
 			if (superpower != 0)
 			{
+				if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)App->particles->AddParticle(App->particles->big_laser_left, position.x - 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+				if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)	App->particles->AddParticle(App->particles->big_laser_down, position.x - 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+				if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)	App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)	App->particles->AddParticle(App->particles->big_laser_up, position.x - 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+
 				if (App->input->buttonB == KEY_STATE::KEY_REPEAT)
 					App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
 
