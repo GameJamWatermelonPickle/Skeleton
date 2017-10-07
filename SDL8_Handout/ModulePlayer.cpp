@@ -163,6 +163,8 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("rtype/Sprites_Big.png");
 	graphicsLife = App->textures->Load("rtype/superPower.png");
 	shoot = App->audio->LoadFX("Audios/sound_effects/shoot.wav");
+	step = App->audio->LoadFX("Audios/sound_effects/steps.wav");
+
 
 	destroyed = false;
 	position.x = 150;
@@ -224,10 +226,15 @@ update_status ModulePlayer::Update()
 			position.y = 370;
 		}
 		if (lvl == 1 && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN || App->input->dpadRight == KEY_STATE::KEY_REPEAT || App->input->joy_right == KEY_STATE::KEY_REPEAT)
+		{
+			App->audio->PlayFX(step);
 			lvl = 2;
+		}
 		if (lvl == 2 && App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_DOWN || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT)
+		{
+			App->audio->PlayFX(step);
 			lvl = 1;
-
+		}
 	}
 
 	else {
