@@ -39,7 +39,7 @@ Enemy_Down_Straight::Enemy_Down_Straight(int x, int y) : Enemy(x, y)
 	//animation = &fly;
 
 	
-	movement.PushBack({ 0.0f,2.0f }, 1, animation);
+	movement.PushBack({ 0.0f,-2.0f }, 1, animation);
 	
 
 
@@ -61,8 +61,9 @@ void Enemy_Down_Straight::Move()
 
 
 void Enemy_Down_Straight::OnCollision(Collider* c1, Collider* c2) {
-	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
+	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 	{
+		if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
 		App->baseball_field->color += 10;
 		App->baseball_field->death++;
 	}
