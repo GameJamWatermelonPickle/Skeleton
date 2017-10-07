@@ -11,6 +11,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleSceneGirl.h"
 #include "ModuleSceneLevelSelector.h"
+#include "ModuleSceneBaseballField.h"
 #include <time.h>
 #include <stdlib.h>
 
@@ -76,8 +77,9 @@ bool ModuleSceneGirl::Start()
 	R.h = 1200;
 	R.w = 1200;
 
-	color = 0;
+	App->baseball_field->color = 0;
 	cont = 0;
+	App->baseball_field->over = false;
 
 	// Enemies ---
 
@@ -113,11 +115,10 @@ update_status ModuleSceneGirl::Update()
 		cont++;
 	}
 
-	App->render->Blit(background, 0, 0, NULL);
-
-	if (color >= 250) {
-		App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);
-		over = true;
+	if (App->baseball_field->color >= 250) {
+		App->fade->FadeToBlack(this, (Module*)App->gameover);
+		App->baseball_field->over = true;
+		App->baseball_field->color = 250;
 	}
 
 
@@ -157,6 +158,9 @@ update_status ModuleSceneGirl::Update()
 		else if (random[3] == 2)
 			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
 	}
+
+	App->render->Blit(background, 0, 0, NULL);
+
 
 	return UPDATE_CONTINUE;
 }
