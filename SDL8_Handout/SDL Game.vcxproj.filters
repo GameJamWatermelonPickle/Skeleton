@@ -80,9 +80,6 @@
     <ClInclude Include="ModuleEnd.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy_Left_S.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
@@ -173,9 +170,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleEnd.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_Left_S.cpp">
