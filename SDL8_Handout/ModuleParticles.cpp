@@ -167,7 +167,6 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if(active[i] != nullptr && active[i]->collider == c1 && c1->type == COLLIDER_PLAYER_SHOT)
 		{
-			App->baseball_field->death++;
 			if (App->player->Combocount < 400) {
 				Combo++;
 				App->player->Combocount = 0;

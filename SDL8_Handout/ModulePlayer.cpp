@@ -435,16 +435,10 @@ update_status ModulePlayer::Update()
 	if (App->particles->Combo >= 5) {
 		App->particles->Combo = 0;
 		superpower += 1;
-		if (lvl == 1) {
-			App->baseball_field->color - 10;
-		}
-		if (lvl == 2) {
-			App->girl->color - 10;
-		}
+		App->baseball_field->color - 10;
+
+		Combocount++;
 	}
-
-	Combocount++;
-
 	return UPDATE_CONTINUE;
 }
 

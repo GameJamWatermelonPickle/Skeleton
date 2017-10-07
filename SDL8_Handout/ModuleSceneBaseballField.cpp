@@ -132,7 +132,7 @@ update_status ModuleSceneBaseballField::Update()
 	{
 		death = 0;
 		win++;
-		if (win == 2) {
+		if (win == 20) {
 			App->fade->FadeToBlack(this, (Module*)App->girl);
 		}
 
