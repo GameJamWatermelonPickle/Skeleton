@@ -16,20 +16,58 @@ ModuleParticles::ModuleParticles()
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
 
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	laser.anim.PushBack({232, 103, 16, 12});
-	laser.anim.PushBack({249, 103, 16, 12});
+	laser.anim.PushBack({1, 2, 39, 21});
+	laser.anim.PushBack({52, 2, 39, 21 });
+	laser.anim.PushBack({ 104, 2, 39, 21 });
 	laser.anim.speed = 0.2f;
 	laser.speed.x = 5;
 	laser.life = 3000;
+
+	laser_left.anim.PushBack({ 1, 29, 39, 21 });
+	laser_left.anim.PushBack({ 52, 29, 39, 21 });
+	laser_left.anim.PushBack({ 104, 29, 39, 21 });
+	laser_left.anim.speed = 0.2f;
+	laser_left.speed.x = -5;
+	laser_left.life = 3000;
+
+	laser_up.anim.PushBack({ 37, 62, 21, 39 });
+	laser_up.anim.PushBack({ 37, 113, 21, 39 });
+	laser_up.anim.PushBack({ 37, 167, 21, 39 });
+	laser_up.anim.speed = 0.2f;
+	laser_up.speed.y = 5;
+	laser_up.life = 3000;
+
+	laser_down.anim.PushBack({ 3, 62, 21, 39 });
+	laser_down.anim.PushBack({ 3, 113, 21, 39 });
+	laser_down.anim.PushBack({ 3, 167, 21, 39 });
+	laser_down.anim.speed = 0.2f;
+	laser_down.speed.y = -5;
+	laser_down.life = 3000;
+
+
+	big_laser.anim.PushBack({ 250, 0, 64, 47 });
+	big_laser.anim.PushBack({ 318, 2, 64, 47 });
+	big_laser.anim.speed = 0.1f;
+	big_laser.speed.x = 5;
+	big_laser.life = 3000;
+
+	big_laser_left.anim.PushBack({ 318, 48, 64, 47 });
+	big_laser_left.anim.PushBack({ 250, 48, 64, 47 });
+	big_laser_left.anim.speed = 0.1f;
+	big_laser_left.speed.x = -5;
+	big_laser_left.life = 3000;
+
+	big_laser_up.anim.PushBack({ 242, 271, 47, 64 });
+	big_laser_up.anim.PushBack({ 242, 103, 47, 64 });
+	big_laser_up.anim.speed = 0.1f;
+	big_laser_up.speed.y = 5;
+	big_laser_up.life = 3000;
+
+	big_laser_down.anim.PushBack({ 317, 103, 47, 64 });
+	big_laser_down.anim.PushBack({ 317, 171, 47, 64 });
+	big_laser_down.anim.speed = 0.1f;
+	big_laser_down.speed.y = -5;
+	big_laser_down.life = 3000;
 }
 
 ModuleParticles::~ModuleParticles()
@@ -39,7 +77,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("rtype/particles.png");
+	graphics = App->textures->Load("rtype/particles2.png");
 
 	// Load particles fx particle
 
@@ -120,7 +158,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+   	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
 		if(active[i] != nullptr && active[i]->collider == c1)

@@ -57,10 +57,8 @@ update_status ModuleSceneLevelSelector::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(background, 0, 0, NULL);
 
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false)
-	{
+	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false) && App->player->lvl == 1)
 		App->fade->FadeToBlack(this, (Module*)App->baseball_field);
-	}
 	
 	return UPDATE_CONTINUE;
 }

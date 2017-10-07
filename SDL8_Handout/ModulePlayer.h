@@ -31,11 +31,16 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
-	Animation idleHappy;
+
+	Animation idleHappyRight;
+	Animation idleHappyLeft;
+
 	Animation idleMiddleRight;
 	Animation idleMiddleLeft;
 	Animation idleMiddleDown;
-	Animation idleSad;
+
+	Animation idleSadRight;
+	Animation idleSadLeft;
 	Animation leftHappy;
 	Animation leftMiddle;
 	Animation leftSad;
@@ -49,6 +54,7 @@ public:
 	iPoint position;
 	Collider* col;
 	bool destroyed = false;
+	uint personality; // 0 happy, 1 neutral, 2 sad
 };
 
 #endif
