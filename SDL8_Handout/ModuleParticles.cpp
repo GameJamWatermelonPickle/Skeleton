@@ -186,6 +186,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				Combo++;
 				App->player->Combocount = 0;
 			}
+			
 			delete active[i];
 			active[i] = nullptr;
 			break;

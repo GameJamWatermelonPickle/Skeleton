@@ -138,7 +138,7 @@ update_status ModuleSceneBaseballField::Update()
 	}
 
 
-	if (death >=4  || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
+	if (death >= 8  || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
 		death = 0;
 		win++;

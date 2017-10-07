@@ -143,7 +143,7 @@ update_status ModuleSceneGirl::Update()
 	}
 
 	
-	if (App->baseball_field->death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	if (App->baseball_field->death >= 8 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
 
 		App->baseball_field->win++;

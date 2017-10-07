@@ -11,12 +11,13 @@ class Enemy
 {
 protected:
 	Animation* animation = nullptr;
-	Collider* collider = nullptr;
+	
 
 public:
 	iPoint position;
 	SDL_Texture* textureGhost;
-
+	uint hitpoints = 2;
+	Collider* collider = nullptr;
 public:
 	Enemy(int x, int y);
 	virtual ~Enemy();

@@ -192,14 +192,28 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c1, c2);
-			if (c2->type != COLLIDER_ENEMY) {
+			if (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_TOWER) {
+				if (enemies[i]->hitpoints == 2) {
+					enemies[i]->hitpoints -= 2;
+				}
+				else{
+					enemies[i]->hitpoints -= 1;
+				}
+			}
+			else if (c2->type == COLLIDER_PLAYER_SHOT) {
+				enemies[i]->hitpoints--;
+			}
+			else {}
+			if (enemies[i]->hitpoints <= 0) {
 				delete enemies[i];
 				enemies[i] = nullptr;
 				break;
 			}
 		}
+
+
 	}
 }
