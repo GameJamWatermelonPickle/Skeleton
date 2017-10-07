@@ -59,6 +59,7 @@ public:
 	Collider* col;
 	bool destroyed = false;
 	uint personality; // 0 happy, 1 neutral, 2 sad
+	uint superpower;
 };
 
 #endif
