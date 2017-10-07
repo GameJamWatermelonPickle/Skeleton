@@ -37,6 +37,8 @@ bool ModuleSceneGirl::Start()
 	App->collision->Enable();
 	App->enemies->Enable();
 
+	App->audio->LoadMusic("Audios/sound_effects/sonrisa/VidaAlta.ogg");
+
 	App->player->lvl = 2;
 
 	App->render->camera.x = App->render->camera.y = 0;
@@ -64,13 +66,14 @@ bool ModuleSceneGirl::Start()
 	App->collision->AddCollider({ 730, 229, 61, 82 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 730, 741, 61, 82 }, COLLIDER_WALL);
 
-	App->collision->AddCollider({ 510,431,81,82 }, COLLIDER_TOWER);
+	App->collision->AddCollider({ 510,431,81,84 }, COLLIDER_TOWER);
 
 
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_S, 27, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
 	App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
+	App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 
 	R.x = 0;
 	R.y = 0;
@@ -108,6 +111,7 @@ update_status ModuleSceneGirl::Update()
 	if (cont < 100)
 		cont++;
 	if (cont == 100) {
+		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 		App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
@@ -124,6 +128,7 @@ update_status ModuleSceneGirl::Update()
 
 	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
+		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 		death = 0;
 		for (int i = 0; i < 4; i++)
 		{
