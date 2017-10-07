@@ -88,7 +88,8 @@ bool ModuleSceneBaseballField::CleanUp()
 	App->player->Disable();
 	App->audio->UnloadMusic();
 	App->textures->Unload(background);
-
+	App->textures->Unload(background2);
+	App->textures->Unload(background3);
 
 	return true;
 }
@@ -109,11 +110,11 @@ update_status ModuleSceneBaseballField::Update()
 	}
 
 
-	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 60)
+	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 150)
 	{
 		App->render->Blit(background3, 0, 0, NULL);
 	}
-	else if (App->baseball_field->color <= 59 && App->baseball_field->color >=40)
+	else if (App->baseball_field->color <= 149 && App->baseball_field->color >=80)
 	{
 		App->render->Blit(background2, 0, 0, NULL);
 	}
@@ -180,7 +181,7 @@ update_status ModuleSceneBaseballField::Update()
 
 	}
 
-	App->render->Blit(background, 0, 0, NULL);
+	//App->render->Blit(background, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }
