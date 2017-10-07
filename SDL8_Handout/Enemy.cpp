@@ -35,6 +35,6 @@ void Enemy::Draw(SDL_Texture* sprites)
 
 void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
-	App->baseball_field->color += 10;
+	App->baseball_field->color += 20;
 	App->baseball_field->death++;
 }

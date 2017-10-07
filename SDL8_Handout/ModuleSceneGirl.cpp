@@ -136,7 +136,7 @@ update_status ModuleSceneGirl::Update()
 		cont++;
 	}
 
-	if (App->baseball_field->color >= 250) {
+	if (App->baseball_field->color >= 200) {
 		App->fade->FadeToBlack(this, (Module*)App->gameover);
 		App->baseball_field->over = true;
 		App->baseball_field->color = 250;
@@ -145,17 +145,17 @@ update_status ModuleSceneGirl::Update()
 	
 	if (App->baseball_field->death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
-<<<<<<< HEAD
+
 		App->baseball_field->win++;
-		if (App->baseball_field->win == 4) {
+		if (App->baseball_field->win == 13) {
 			App->fade->FadeToBlack(this, (Module*)App->win);
 			App->baseball_field->win = 0;
 		}
 
 		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
-=======
+
 		App->audio->PlayFX(respawn);
->>>>>>> 335705eb803868903197bbcc98d1803973e296a3
+
 		App->baseball_field->death = 0;
 		for (int i = 0; i < 4; i++)
 		{

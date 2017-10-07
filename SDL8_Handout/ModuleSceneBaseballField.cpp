@@ -127,7 +127,7 @@ update_status ModuleSceneBaseballField::Update()
 
 	
 
-	if (color >= 250) {
+	if (color >= 200) {
 		App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);
 		over = true;
 	}
@@ -138,13 +138,13 @@ update_status ModuleSceneBaseballField::Update()
 	}
 
 
-	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
+	if (death >=4  || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
 		death = 0;
 		win++;
 		
 		App->audio->PlayFX(respawn);
-		if (win == 4) {
+		if (win == 10) {
 			App->fade->FadeToBlack(this, (Module*)App->girl);
 			win = 0;
 		}
