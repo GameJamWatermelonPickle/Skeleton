@@ -11,6 +11,8 @@
 #include "ModuleEnemies.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
+#include "ModuleAudio.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -82,18 +84,28 @@ bool ModuleSceneBaseballField::CleanUp()
 // Update: draw background
 update_status ModuleSceneBaseballField::Update()
 {
-	App->render->Blit(background, 0, 0, NULL);
-
 	if (color >= 250) {
 		App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);
 		over = true;
 	}
 
+	if (check_audio) {
+		App->audio->play_music1();
+		check_audio = false;
+	}
 
-	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	if(check_audio2 == true && color >= 150){
+		App->audio->play_music2();
+		check_audio = false;
+	}
+
+
+	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
 
 	}
+
+	App->render->Blit(background, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }
