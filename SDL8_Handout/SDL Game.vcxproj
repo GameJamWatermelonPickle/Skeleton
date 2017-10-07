@@ -74,6 +74,9 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy_Down_S.h" />
+    <ClInclude Include="Enemy_Down_Spiral.h" />
+    <ClInclude Include="Enemy_Down_Straight.h" />
     <ClInclude Include="Enemy_Left_S.h" />
     <ClInclude Include="Enemy_Left_Spiral.h" />
     <ClInclude Include="Enemy_Left_Straight.h" />
@@ -107,6 +110,9 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Enemy_Down_S.cpp" />
+    <ClCompile Include="Enemy_Down_Spiral.cpp" />
+    <ClCompile Include="Enemy_Down_Straight.cpp" />
     <ClCompile Include="Enemy_Left_S.cpp" />
     <ClCompile Include="Enemy_Left_Spiral.cpp" />
     <ClCompile Include="Enemy_Left_Straight.cpp" />
