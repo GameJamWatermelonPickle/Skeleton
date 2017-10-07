@@ -89,6 +89,7 @@
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleSceneBaseballField.h" />
+    <ClInclude Include="ModuleSceneGirl.h" />
     <ClInclude Include="ModuleSceneIntro.h" />
     <ClInclude Include="ModuleSceneLevelSelector.h" />
     <ClInclude Include="ModuleTextures.h" />
@@ -113,6 +114,7 @@
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSceneBaseballField.cpp" />
+    <ClCompile Include="ModuleSceneGirl.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleSceneLevelSelector.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />

@@ -10,6 +10,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 #include "ModuleSceneLevelSelector.h"
+#include "ModuleSceneGirl.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -59,6 +60,8 @@ update_status ModuleSceneLevelSelector::Update()
 
 	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false) && App->player->lvl == 1)
 		App->fade->FadeToBlack(this, (Module*)App->baseball_field);
+	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false) && App->player->lvl == 2)
+		App->fade->FadeToBlack(this, (Module*)App->girl);
 	
 	return UPDATE_CONTINUE;
 }
