@@ -63,6 +63,7 @@ public:
 	uint superpower;
 	uint Combocount;
 	uint shoot;
+	uint shootFX;
 };
 
 #endif
