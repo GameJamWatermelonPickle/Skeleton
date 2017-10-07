@@ -178,13 +178,13 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if(active[i] != nullptr && active[i]->collider == c1 && c1->type == COLLIDER_PLAYER_SHOT)
 		{
-			if (c2->type == COLLIDER_ENEMY)
+			if (c2->type == COLLIDER_ENEMY) {
 				App->particles->AddParticle(App->particles->ghost_dead, c2->rect.x, c2->rect.y, COLLIDER_NONE, NULL);
-			
-			
-	if (App->player->Combocount < 400) {
-				Combo++;
-				App->player->Combocount = 0;
+				if (App->player->Combocount < 400) {
+					Combo++;
+					App->player->Combocount = 0;
+				}
+
 			}
 			
 			delete active[i];

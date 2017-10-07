@@ -177,6 +177,8 @@ bool ModulePlayer::Start()
 	lvl = 1;
 	superpower = 3;
 
+	shoot = 0;
+
 	return true;
 }
 
@@ -340,30 +342,80 @@ update_status ModulePlayer::Update()
 		}
 
 
-
-		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->buttonY == KEY_STATE::KEY_DOWN) {
-			App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT || App->input->buttonY == KEY_STATE::KEY_REPEAT) {
+			if (shoot > 10) {
+				App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+				shoot = 0;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonLB == KEY_STATE::KEY_DOWN && superpower > 0)
+			{
+				App->particles->AddParticle(App->particles->big_laser_up, position.x - 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+				superpower -= 1;
+			}
+			current_animation = &Up;
 			App->audio->PlayFX(shoot);
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN) {
-			App->particles->AddParticle(App->particles->laser_down, position.x + 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT || App->input->buttonA == KEY_STATE::KEY_REPEAT) {
+			if (shoot > 10) {
+				App->particles->AddParticle(App->particles->laser_down, position.x + 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+				shoot = 0;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonLB == KEY_STATE::KEY_DOWN && superpower > 0)
+			{
+				App->particles->AddParticle(App->particles->big_laser_down, position.x - 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+				superpower -= 1;
+			}
+			if (personality == 0)
+				current_animation = &idleHappyDown;
+			else if (personality == 1)
+				current_animation = &idleMiddleDown;
+			else
 				current_animation = &idleSadDown;
 			App->audio->PlayFX(shoot);
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN || App->input->buttonB == KEY_STATE::KEY_DOWN) {
-			App->particles->AddParticle(App->particles->laser, position.x + 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT || App->input->buttonB == KEY_STATE::KEY_REPEAT) {
+			if (shoot > 10) {
+				App->particles->AddParticle(App->particles->laser, position.x + 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+				shoot = 0;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonLB == KEY_STATE::KEY_DOWN && superpower > 0)
+			{
+				App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+				superpower -= 1;
+			}
+			if (personality == 0)
+				current_animation = &idleHappyRight2;
+			else if (personality == 1)
+				current_animation = &idleMiddleRight;
+			else
+				current_animation = &idleSadRight;
 			App->audio->PlayFX(shoot);
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN || App->input->buttonX == KEY_STATE::KEY_DOWN) {
-			App->particles->AddParticle(App->particles->laser_left, position.x - 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT || App->input->buttonX == KEY_STATE::KEY_REPEAT) {
+			if (shoot > 10) {
+				App->particles->AddParticle(App->particles->laser_left, position.x - 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+				shoot = 0;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonLB == KEY_STATE::KEY_DOWN && superpower > 0)
+			{
+				App->particles->AddParticle(App->particles->big_laser_left, position.x - 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+				superpower -= 1;
+			}
+			if (personality == 0)
+				current_animation = &idleHappyLeft;
+			else if (personality == 1)
+				current_animation = &idleMiddleLeft;
+			else
+				current_animation = &idleSadLeft;
 			App->audio->PlayFX(shoot);
 		}
 
 
-		if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0)
+
+		/*if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonRB == KEY_STATE::KEY_DOWN && superpower > 0)
 		{
 			if (superpower != 0)
 			{
@@ -386,7 +438,7 @@ update_status ModulePlayer::Update()
 
 				superpower -= 1;
 			}
-		}
+		}*/
 
 
 
@@ -414,18 +466,15 @@ update_status ModulePlayer::Update()
 		App->render->Blit(graphicsLife, App->render->camera.x + x, App->render->camera.y + 650, &rectLife.GetCurrentFrame());
 	}
 
-	if (App->particles->Combo >= 5) {
+	if (App->particles->Combo >= 15) {
 		App->particles->Combo = 0;
-		superpower += 1;
-
-
-		App->baseball_field->color - 10;
-
-
-
-
+		if (superpower <= 3) {
+			superpower += 1;
+		}
+		App->baseball_field->color -= 10;
 		Combocount++;
 	}
+	shoot += 1;
 	return UPDATE_CONTINUE;
 }
 

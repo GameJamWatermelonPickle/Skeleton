@@ -67,7 +67,7 @@ update_status ModuleSceneIntro::Update()
 
 
 
-	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
+	if(App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN && App->fade->IsFading() == false || App->input->joy_up== KEY_DOWN && App->fade->IsFading() == false)
 	{
 		if (positiony == 246) {
 			positionx = 139;
