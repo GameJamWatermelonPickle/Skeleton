@@ -62,6 +62,7 @@ public:
 	uint personality; // 0 happy, 1 neutral, 2 sad
 	uint superpower;
 	uint Combocount;
+	uint shoot;
 };
 
 #endif

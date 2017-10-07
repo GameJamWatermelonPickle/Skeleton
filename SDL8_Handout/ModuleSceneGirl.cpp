@@ -28,8 +28,10 @@ bool ModuleSceneGirl::Start()
 {
 	LOG("Loading space intro");
 
-	background = App->textures->Load("rtype/restaurante_1.png");
 
+	background = App->textures->Load("rtype/restaurante_1.png");
+	background2 = App->textures->Load("rtype/restaurante_2.png");
+	background3 = App->textures->Load("rtype/restaurante_3.png"),
 	//App->level_selector->lvlselector = false;
 
 	App->player->Enable();
@@ -37,6 +39,7 @@ bool ModuleSceneGirl::Start()
 	App->collision->Enable();
 	App->enemies->Enable();
 
+	respawn = App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 	App->audio->LoadMusic("Audios/sound_effects/sonrisa/VidaAlta.ogg");
 
 	App->player->lvl = 2;
@@ -67,14 +70,13 @@ bool ModuleSceneGirl::Start()
 	App->collision->AddCollider({ 730, 229, 61, 82 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 730, 741, 61, 82 }, COLLIDER_WALL);
 
-	App->collision->AddCollider({ 510,431,81,84 }, COLLIDER_TOWER);
+	App->collision->AddCollider({ 510,429,81,86 }, COLLIDER_TOWER);
 
-
+	App->audio->PlayFX(respawn);
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_S, 27, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
 	App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
-	App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 
 	R.x = 0;
 	R.y = 0;
@@ -100,6 +102,8 @@ bool ModuleSceneGirl::CleanUp()
 	App->particles->Disable();
 	App->player->Disable();
 	App->textures->Unload(background);
+	App->textures->Unload(background2);
+	App->textures->Unload(background3);
 
 
 	return true;
@@ -108,11 +112,23 @@ bool ModuleSceneGirl::CleanUp()
 // Update: draw background
 update_status ModuleSceneGirl::Update()
 {
-
+	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 150)
+	{
+		App->render->Blit(background3, 0, 0, NULL);
+		
+	}
+	else if (App->baseball_field->color <= 149 && App->baseball_field->color >= 80)
+	{
+		App->render->Blit(background2, 0, 0, NULL);
+	}
+	else
+	{
+		App->render->Blit(background, 0, 0, NULL);
+	}
 	if (cont < 100)
 		cont++;
 	if (cont == 100) {
-		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+		App->audio->PlayFX(respawn);
 		App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
@@ -129,7 +145,7 @@ update_status ModuleSceneGirl::Update()
 	
 	if (App->baseball_field->death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
-		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+		App->audio->PlayFX(respawn);
 		App->baseball_field->death = 0;
 		for (int i = 0; i < 4; i++)
 		{
@@ -165,7 +181,7 @@ update_status ModuleSceneGirl::Update()
 			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
 	}
 
-	App->render->Blit(background, 0, 0, NULL);
+	//App->render->Blit(background, 0, 0, NULL);
 
 
 	return UPDATE_CONTINUE;
