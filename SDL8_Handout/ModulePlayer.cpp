@@ -10,10 +10,11 @@
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneBaseballField.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 
 ModulePlayer::ModulePlayer()
 {
+	rectLife.PushBack({ 0,0,39,38 });
 	// idle animation (just the ship)
 	idleMiddleRight.PushBack({ 0, 0, 49, 61 });
 	idleMiddleRight.PushBack({ 61, 0, 49, 61 });
@@ -93,40 +94,58 @@ ModulePlayer::ModulePlayer()
 	leftSad.PushBack({ 307,557,49,61 });
 	leftSad.PushBack({ 369,557,49,61 });
 
-	downHappy.PushBack({ 486,138,43,61 });
-	downHappy.PushBack({ 535,138,32,61 });
-	downHappy.PushBack({ 577,138,30,61 });
-	downHappy.PushBack({ 613,138,33,61 });
-	downHappy.PushBack({ 649,138,44,61 });
-	downHappy.PushBack({ 699,138,32,61 });
+	idleSadDown.PushBack({500,342,31,61});
+	idleSadDown.PushBack({544,324,31,61});
+	idleSadDown.PushBack({585,324,31,61});
 
-	downSad.PushBack({ 493,273,43,61 });
-	downSad.PushBack({ 542,273,32,61 });
-	downSad.PushBack({ 584,273,30,61 });
-	downSad.PushBack({ 620,273,33,61 });
-	downSad.PushBack({ 656,273,44,61 });
-	downSad.PushBack({ 706,273,32,61 });
+	idleMiddleDown.PushBack({504,477,31,61});
+	idleMiddleDown.PushBack({ 548, 477, 31,61});
+	idleMiddleDown.PushBack({590,477,31,61});
 
-	downMiddle.PushBack({ 497,408,43,61 });
-	downMiddle.PushBack({ 546,408,32,61 });
-	downMiddle.PushBack({ 588,408,30,61 });
-	downMiddle.PushBack({ 624,408,33,61 });
-	downMiddle.PushBack({ 660,408,44,61 });
-	downMiddle.PushBack({ 710,408,32,61 });
+	idleHappyDown.PushBack({493, 207, 31, 61});
+	idleHappyDown.PushBack({ 537, 207, 31, 61 });
+	idleHappyDown.PushBack({ 578, 207, 31, 61 });
 
-	Up.PushBack({ 481, 0, 36, 61 });
-	Up.PushBack({ 532, 0, 36, 61 });
-	Up.PushBack({ 578, 0, 36, 61 });
-	Up.PushBack({ 622, 0, 36, 61 });
-	Up.PushBack({ 661, 0, 36, 61 });
-	Up.PushBack({ 712, 0, 36, 61 });
+	downHappy.PushBack({ 492,139,31,61 });
+	downHappy.PushBack({ 536,138,31,61 });
+	downHappy.PushBack({ 577,138,31,61 });
+	downHappy.PushBack({ 614,138,31,61 });
+	downHappy.PushBack({ 656,138,31,61 });
+	downHappy.PushBack({ 699,138,31,61 });
+
+	downSad.PushBack({ 499,274,31,61 });
+	downSad.PushBack({ 543,273,31,61 });
+	downSad.PushBack({ 584,273,31,61 });
+	downSad.PushBack({ 620,273,31,61 });
+	downSad.PushBack({ 656,273,31,61 });
+	downSad.PushBack({ 706,274,31,61 });
+
+	downMiddle.PushBack({ 503,409,31,61 });
+	downMiddle.PushBack({ 547,408,31,61 });
+	downMiddle.PushBack({ 588,408,31,61 });
+	downMiddle.PushBack({ 626,408,31,61 });
+	downMiddle.PushBack({ 668,409,31,61 });
+	downMiddle.PushBack({ 710,408,31,61 });
+
+	idleUp.PushBack({ 488, 69, 31, 61 });
+	idleUp.PushBack({ 532, 68, 31, 61 });
+	idleUp.PushBack({ 577, 68, 31, 61 });
+
+	Up.PushBack({ 487, 0, 31, 61 });
+	Up.PushBack({ 532, 0, 31, 61 });
+	Up.PushBack({ 577, 0, 31, 61 });
+	Up.PushBack({ 622, 0, 31, 61 });
+	Up.PushBack({ 667, 0, 31, 61 });
+	Up.PushBack({ 712, 0, 31, 61 });
 
 
 	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappyRight2.speed = idleHappyLeft.speed = idleSadRight.speed= idleSadLeft.speed = 0.15;
 	rightMiddle.speed = rightHappy.speed = rightSad.speed = 0.15;
 	leftMiddle.speed = leftHappy.speed = leftSad.speed = 0.15;
-	downMiddle.speed = downHappy.speed = downSad.speed = 0.03;
+	downMiddle.speed = downHappy.speed = downSad.speed = 0.15;
+	idleUp.speed = idleHappyDown.speed = idleMiddleDown.speed = idleSadDown.speed = 0.15;
 	Up.speed = 0.15;
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -138,14 +157,17 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("rtype/Sprites_Big.png");
-
+	graphicsLife = App->textures->Load("rtype/superPower.png");
 	destroyed = false;
 	position.x = 150;
 	position.y = 120;
 	personality = 0;
 	col = App->collision->AddCollider({position.x + 2, position.y - 5, 45,56}, COLLIDER_PLAYER, this);
 
+	current_animation = &idleHappyRight2;
+
 	lvl = 1;
+	superpower = 3;
 
 	return true;
 }
@@ -283,6 +305,18 @@ update_status ModulePlayer::Update()
 				}
 			}
 
+			
+		}
+		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->input->dpadDown == KEY_STATE::KEY_UP || App->input->joy_down == KEY_STATE::KEY_UP) && collS == false)
+		{
+
+			if (personality == 0)
+				current_animation = &idleHappyDown;
+			else if (personality == 1)
+				current_animation = &idleMiddleDown;
+			else
+				current_animation = &idleSadDown;
+
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->dpadUp == KEY_STATE::KEY_REPEAT || App->input->joy_up == KEY_STATE::KEY_REPEAT) && collW == false)
@@ -296,20 +330,53 @@ update_status ModulePlayer::Update()
 					App->render->camera.y -= speed;
 				}
 			}
-		
+					
+		}
+		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->input->dpadUp == KEY_STATE::KEY_UP || App->input->joy_up == KEY_STATE::KEY_UP) && collW == false)
+		{
+			
+			current_animation = &idleUp;
+
 		}
 
 
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN)
 		{
-			App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+			if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
+				App->particles->AddParticle(App->particles->laser, position.x + 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+		
+			if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
+				App->particles->AddParticle(App->particles->laser_left, position.x - 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+
+			if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
+				App->particles->AddParticle(App->particles->laser_down, position.x + 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+
+			if (current_animation == &idleUp || current_animation == &Up)
+				App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-			&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
+		if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonX == KEY_STATE::KEY_DOWN && superpower > 0)
+		{
+			if (superpower != 0)
+			{
+				if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
+					App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
 
-//			current_animation = &idleMidle;
+				if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
+					App->particles->AddParticle(App->particles->big_laser_left, position.x - 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+
+				if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
+					App->particles->AddParticle(App->particles->big_laser_down, position.x - 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+
+				if (current_animation == &idleUp || current_animation == &Up)
+					App->particles->AddParticle(App->particles->big_laser_up, position.x - 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+
+				superpower -= 1;
+			}
+		}
+
+		
 
 		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN && App->fade->IsFading() == false)
 		{
@@ -329,8 +396,11 @@ update_status ModulePlayer::Update()
 	collA = false;
 	collS = false;
 	collD = false;
-
 	
+	for (int i = 0, x =0; i < superpower; i++,  x += 30)
+	{
+		App->render->Blit(graphicsLife, App->render->camera.x+x, App->render->camera.y + 650, &rectLife.GetCurrentFrame());
+	}
 
 	return UPDATE_CONTINUE;
 }

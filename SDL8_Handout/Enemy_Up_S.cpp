@@ -1,10 +1,10 @@
 #include "Application.h"
-#include "Enemy_Left_S.h"
+#include "Enemy_Up_S.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "Path.h"
 
-Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
+Enemy_Up_S::Enemy_Up_S(int x, int y) : Enemy(x, y)
 {
 	fly.PushBack({ 5,6,24,24 });
 	fly.PushBack({ 38, 6, 24, 24 });
@@ -19,9 +19,9 @@ Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
 	animation = &fly;
 
 
-	movement.PushBack({ 1.0f,-2.0f }, 57, &fly);
-	movement.PushBack({ 1.0f,2.0f }, 114, &fly);
-	movement.PushBack({ 1.0f,-2.0f }, 57, &fly);
+	movement.PushBack({ -2.0f,1.0f }, 57, &fly);
+	movement.PushBack({ 2.0f,1.0f }, 114, &fly);
+	movement.PushBack({ -2.0f,1.0f }, 57, &fly);
 
 
 	originalpos.x = x;
@@ -34,12 +34,12 @@ Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
 
 }
 
-void Enemy_Left_S::Move()
+void Enemy_Up_S::Move()
 {
 	position = originalpos + movement.GetCurrentPosition();
 }
 
 
-void Enemy_Left_S::OnCollision(Collider* c1, Collider* c2) {
+void Enemy_Up_S::OnCollision(Collider* c1, Collider* c2) {
 
 }

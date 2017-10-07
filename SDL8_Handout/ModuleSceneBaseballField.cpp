@@ -1,7 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
-#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
@@ -11,8 +10,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
-
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+#include "SDL_mixer/include/SDL_mixer.h"
 
 ModuleSceneBaseballField::ModuleSceneBaseballField()
 {}
@@ -26,7 +24,8 @@ bool ModuleSceneBaseballField::Start()
 	LOG("Loading space intro");
 
 	background = App->textures->Load("rtype/beisbol_1.png");
-
+	background2 = App->textures->Load("rtype/beisbol_2.png");
+	background3 = App->textures->Load("rtype/beisbol_3.png");
 	//App->level_selector->lvlselector = false;
 
 	App->player->Enable();
@@ -82,18 +81,43 @@ bool ModuleSceneBaseballField::CleanUp()
 // Update: draw background
 update_status ModuleSceneBaseballField::Update()
 {
-	App->render->Blit(background, 0, 0, NULL);
+
+	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 60)
+	{
+		App->render->Blit(background3, 0, 0, NULL);
+	}
+	else if (App->baseball_field->color <= 59 && App->baseball_field->color >=40)
+	{
+		App->render->Blit(background2, 0, 0, NULL);
+	}
+	else
+	{
+		App->render->Blit(background, 0, 0, NULL);
+	}
+	
 
 	if (color >= 250) {
 		App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);
 		over = true;
 	}
 
+	//if (check_audio) {
+	//	App->audio->play_music1();
+	//	check_audio = false;
+	//}
 
-	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	//if(check_audio2 == true && color >= 150){
+	//	App->audio->play_music2();
+	//	check_audio = false;
+	//}
+
+
+	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
 
 	}
+
+	App->render->Blit(background, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }

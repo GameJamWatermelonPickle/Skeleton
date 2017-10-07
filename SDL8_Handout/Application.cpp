@@ -3,7 +3,6 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleAudio.h"
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleSceneBaseballField.h"
@@ -32,6 +31,7 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();
+
 
 }	
 

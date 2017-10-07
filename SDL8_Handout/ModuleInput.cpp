@@ -130,6 +130,20 @@ update_status ModuleInput::PreUpdate()
 			buttonY = KEY_IDLE;
 	}
 
+	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_X) == 1) {
+		if (buttonX == KEY_IDLE)
+			buttonX = KEY_DOWN;
+		else
+			buttonX = KEY_REPEAT;
+	}
+	else
+	{
+		if (buttonX == KEY_REPEAT || buttonX == KEY_DOWN)
+			buttonX = KEY_UP;
+		else
+			buttonX = KEY_IDLE;
+	}
+
 	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_START) == 1) {
 		if (buttonStart == KEY_IDLE)
 			buttonStart = KEY_DOWN;

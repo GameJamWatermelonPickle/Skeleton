@@ -80,9 +80,6 @@
     <ClInclude Include="ModuleEnd.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy_Left_S.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
@@ -90,6 +87,36 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Left_Straight.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneGirl.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Right_S.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Right_Straight.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Right_Spiral.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Up_Straight.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Up_S.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Up_Spiral.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Down_S.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Down_Straight.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Down_Spiral.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
@@ -145,9 +172,6 @@
     <ClCompile Include="ModuleEnd.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Audio.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy_Left_S.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
@@ -155,6 +179,36 @@
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_Left_Straight.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneGirl.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Right_S.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Right_Straight.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Right_Spiral.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Up_Straight.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Up_S.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Up_Spiral.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Down_S.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Down_Straight.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Down_Spiral.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
