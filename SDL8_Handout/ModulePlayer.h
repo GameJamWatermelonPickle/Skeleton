@@ -26,10 +26,11 @@ public:
 	bool collA = false;
 	bool collS = false;
 	bool collD = false;
-
+	int life= 3;
 public:
-
+	Animation rectLife;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphicsLife = nullptr;
 	Animation* current_animation = nullptr;
 
 	Animation idleHappyRight2;
@@ -37,7 +38,7 @@ public:
 
 	Animation idleMiddleRight;
 	Animation idleMiddleLeft;
-	Animation idleMiddleDown;
+	
 
 	Animation idleSadRight;
 	Animation idleSadLeft;
@@ -50,11 +51,16 @@ public:
 	Animation downHappy;
 	Animation downMiddle;
 	Animation downSad;
+	Animation idleHappyDown;
+	Animation idleMiddleDown;
+	Animation idleSadDown;
+	Animation idleUp;
 	Animation Up;
 	iPoint position;
 	Collider* col;
 	bool destroyed = false;
 	uint personality; // 0 happy, 1 neutral, 2 sad
+	uint superpower;
 };
 
 #endif

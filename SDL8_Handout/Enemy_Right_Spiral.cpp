@@ -1,10 +1,10 @@
 #include "Application.h"
-#include "Enemy_Left_Spiral.h"
+#include "Enemy_Right_Spiral.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "Path.h"
 
-Enemy_Left_Spiral::Enemy_Left_Spiral(int x, int y) : Enemy(x, y)
+Enemy_Right_Spiral::Enemy_Right_Spiral(int x, int y) : Enemy(x, y)
 {
 	fly.PushBack({ 5,6,24,24 });
 	fly.PushBack({ 38, 6, 24, 24 });
@@ -19,12 +19,12 @@ Enemy_Left_Spiral::Enemy_Left_Spiral(int x, int y) : Enemy(x, y)
 	animation = &fly;
 
 	
-	movement.PushBack({ 2.0f,-1.0f }, 251, &fly);
-	movement.PushBack({ 2.0f,1.0f }, 180, &fly);
-	movement.PushBack({ -1.0f,2.0f }, 180, &fly);
-	movement.PushBack({ -2.0f,-1.0f }, 150, &fly);
-	movement.PushBack({ 2.0f,-1.0f }, 251, &fly);
-	
+	movement.PushBack({ -2.0f,-1.0f }, 251, &fly);
+	movement.PushBack({ -2.0f,1.0f }, 180, &fly);
+	movement.PushBack({ 1.0f,2.0f }, 180, &fly);
+	movement.PushBack({ 2.0f,-1.0f }, 150, &fly);
+	movement.PushBack({ -2.0f,-1.0f }, 251, &fly);
+
 	
 	originalpos.x = x;
 	originalpos.y = y;
@@ -36,12 +36,12 @@ Enemy_Left_Spiral::Enemy_Left_Spiral(int x, int y) : Enemy(x, y)
 
 }
 
-void Enemy_Left_Spiral::Move()
+void Enemy_Right_Spiral::Move()
 {
 	position = originalpos + movement.GetCurrentPosition();
 }
 
 
-void Enemy_Left_Spiral::OnCollision(Collider* c1, Collider* c2) {
+void Enemy_Right_Spiral::OnCollision(Collider* c1, Collider* c2) {
 
 }

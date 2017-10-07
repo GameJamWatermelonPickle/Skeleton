@@ -9,6 +9,12 @@
 #include "Enemy_Left_Straight.h"
 #include "Enemy_Left_S.h"
 #include "Enemy_Left_Spiral.h"
+#include "Enemy_Right_S.h"
+#include "Enemy_Right_Straight.h"
+#include "Enemy_Right_Spiral.h"
+#include "Enemy_Up_Straight.h"
+#include "Enemy_Up_S.h"
+#include "Enemy_Up_Spiral.h"
 
 
 #define SPAWN_MARGIN 50
@@ -27,7 +33,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("rtype/enemies.png");
+	sprites = App->textures->Load("rtype/sprites_ghost.png");
 
 	return true;
 }
@@ -141,6 +147,29 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 			case ENEMY_TYPES::LEFT_SPIRAL:
 				enemies[i] = new Enemy_Left_Spiral(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::RIGHT_S:
+				enemies[i] = new Enemy_Right_S(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::RIGHT_STRAIGHT:
+				enemies[i] = new Enemy_Right_Straight(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::RIGHT_SPIRAL:
+				enemies[i] = new Enemy_Right_Spiral(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::UP_STRAIGHT:
+				enemies[i] = new Enemy_Up_Straight(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::UP_S:
+				enemies[i] = new Enemy_Up_S(info.x, info.y);
+				break;
+			case ENEMY_TYPES::UP_SPIRAL:
+				enemies[i] = new Enemy_Up_Spiral(info.x, info.y);
 				break;
 
 		}

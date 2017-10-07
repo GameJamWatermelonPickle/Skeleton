@@ -34,14 +34,14 @@ ModuleParticles::ModuleParticles()
 	laser_up.anim.PushBack({ 37, 113, 21, 39 });
 	laser_up.anim.PushBack({ 37, 167, 21, 39 });
 	laser_up.anim.speed = 0.2f;
-	laser_up.speed.y = 5;
+	laser_up.speed.y = -5;
 	laser_up.life = 3000;
 
 	laser_down.anim.PushBack({ 3, 62, 21, 39 });
 	laser_down.anim.PushBack({ 3, 113, 21, 39 });
 	laser_down.anim.PushBack({ 3, 167, 21, 39 });
 	laser_down.anim.speed = 0.2f;
-	laser_down.speed.y = -5;
+	laser_down.speed.y = 5;
 	laser_down.life = 3000;
 
 
@@ -51,22 +51,22 @@ ModuleParticles::ModuleParticles()
 	big_laser.speed.x = 5;
 	big_laser.life = 3000;
 
-	big_laser_left.anim.PushBack({ 318, 48, 64, 47 });
-	big_laser_left.anim.PushBack({ 250, 48, 64, 47 });
+	big_laser_left.anim.PushBack({ 318, 50, 64, 47 });
+	big_laser_left.anim.PushBack({ 250, 50, 64, 47 });
 	big_laser_left.anim.speed = 0.1f;
 	big_laser_left.speed.x = -5;
 	big_laser_left.life = 3000;
 
-	big_laser_up.anim.PushBack({ 242, 271, 47, 64 });
+	big_laser_up.anim.PushBack({ 242, 171, 47, 64 });
 	big_laser_up.anim.PushBack({ 242, 103, 47, 64 });
 	big_laser_up.anim.speed = 0.1f;
-	big_laser_up.speed.y = 5;
+	big_laser_up.speed.y = -5;
 	big_laser_up.life = 3000;
 
 	big_laser_down.anim.PushBack({ 317, 103, 47, 64 });
 	big_laser_down.anim.PushBack({ 317, 171, 47, 64 });
 	big_laser_down.anim.speed = 0.1f;
-	big_laser_down.speed.y = -5;
+	big_laser_down.speed.y = 5;
 	big_laser_down.life = 3000;
 }
 

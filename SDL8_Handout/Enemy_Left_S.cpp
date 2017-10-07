@@ -19,8 +19,9 @@ Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
 	animation = &fly;
 
 
-	movement.PushBack({ 1.0f,2.0f }, 114, &fly);
+	movement.PushBack({ 1.0f,2.0f }, 57, &fly);
 	movement.PushBack({ 1.0f,-2.0f }, 114, &fly);
+	movement.PushBack({ 1.0f,2.0f }, 57, &fly);
 
 
 	originalpos.x = x;

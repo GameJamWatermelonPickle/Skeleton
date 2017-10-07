@@ -14,8 +14,6 @@
 #include "ModuleAudio.h"
 #include "SDL_mixer/include/SDL_mixer.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModuleSceneBaseballField::ModuleSceneBaseballField()
 {}
 
