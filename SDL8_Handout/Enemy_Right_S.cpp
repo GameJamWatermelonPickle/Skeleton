@@ -32,9 +32,9 @@ Enemy_Right_S::Enemy_Right_S(int x, int y) : Enemy(x, y)
 	redGhostUp.speed = 0.15f;
 	redGhostRight.speed = 0.15f;
 
-	movement.PushBack({ 0.5f, 1.13f }, 100, animation);
-	movement.PushBack({ 0.5f, -1.0f }, 200, animation);
-	movement.PushBack({ 0.5f, 1.13f }, 100, animation);
+	movement.PushBack({ -0.5f, 1.13f }, 100, animation);
+	movement.PushBack({ -0.5f, -1.0f }, 200, animation);
+	movement.PushBack({ -0.5f, 1.13f }, 100, animation);
 
 
 	originalpos.x = x;
