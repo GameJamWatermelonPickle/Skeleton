@@ -7,7 +7,10 @@
 class Enemy_Down_Straight : public Enemy
 {
 private:
-	Animation fly;
+	Animation whiteGhostUp;
+	Animation whiteGhostDown;
+	Animation whiteGhostLeft;
+	Animation whiteGhostRight;
 	iPoint originalpos;
 	Path movement;
 

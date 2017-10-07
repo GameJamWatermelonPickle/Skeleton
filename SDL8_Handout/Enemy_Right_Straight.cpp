@@ -7,21 +7,32 @@
 
 Enemy_Right_Straight::Enemy_Right_Straight(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 5,6,24,24 });
-	fly.PushBack({ 38, 6, 24, 24 });
-	fly.PushBack({ 71, 6, 24, 24 });
-	fly.PushBack({ 104, 6, 24, 24 });
-	fly.PushBack({ 137, 6, 24, 24 });
-	fly.PushBack({ 170, 6, 24, 24 });
-	fly.PushBack({ 203, 6, 24, 24 });
-	fly.PushBack({ 236, 6, 24, 24 });
-	fly.speed = 0.2f;
+	whiteGhostRight.PushBack({ 6,6,43,43 });
+	whiteGhostRight.PushBack({ 6,52,43,43 });
+	whiteGhostRight.PushBack({ 6,6,43,43 });
+	whiteGhostRight.PushBack({ 6,100,42,42 });
 
-	animation = &fly;
+	whiteGhostLeft.PushBack({ 6,154,43,43 });
+	whiteGhostLeft.PushBack({ 6,200,43,43 });
+	whiteGhostLeft.PushBack({ 6,154,43,43 });
+	whiteGhostLeft.PushBack({ 6,248,42,42 });
+
+	whiteGhostUp.PushBack({ 112,6,37,41 });
+	whiteGhostUp.PushBack({ 112,52,32,40 });
+	whiteGhostUp.PushBack({ 112,6,37,41 });
+	whiteGhostUp.PushBack({ 112,100,32,40 });
+
+	whiteGhostDown.PushBack({ 63,6,36,42 });
+	whiteGhostDown.PushBack({ 63,52,36,42 });
+	whiteGhostDown.PushBack({ 63,6,36,42 });
+	whiteGhostDown.PushBack({ 63,100,36,42 });
+
+	//animation = &fly;
 
 
-	movement.PushBack({ -2.0f,0.5f }, 260, &fly);
-	movement.PushBack({ -2.0f,0.0f }, 5000, &fly);
+	movement.PushBack({ 0.0f,-2.0f }, 1, animation);
+
+
 
 	originalpos.x = x;
 	originalpos.y = y;
@@ -36,6 +47,43 @@ Enemy_Right_Straight::Enemy_Right_Straight(int x, int y) : Enemy(x, y)
 void Enemy_Right_Straight::Move()
 {
 	position = originalpos + movement.GetCurrentPosition();
+	position = originalpos + movement.GetCurrentPosition();
+	bool left;
+	float angle;
+
+
+	if (ballposx >= position.x) {
+		left = false;
+	}
+	else {
+		left = true;
+	}
+
+	angle = ((float)acos((((ballposx - position.x) * 0) + ((ballposy - position.y) * 1)) / (sqrt((double)((ballposx - position.x)*(ballposx - position.x) + (ballposy - position.y)*(ballposy - position.y)))*sqrt((double)(0 * 0 + 1 * 1))))) * ANGLE_CONVERT;
+	if (left == false) {
+		if (angle <= 45) {
+			animation = &whiteGhostDown;
+		}
+
+		else if (angle > 45 && angle < 135) {
+			animation = &whiteGhostRight;
+		}
+		else {
+			animation = &whiteGhostUp;
+		}
+	}
+	else {
+		if (angle <= 45) {
+			animation = &whiteGhostDown;
+		}
+
+		else if (angle > 45 && angle < 135) {
+			animation = &whiteGhostLeft;
+		}
+		else {
+			animation = &whiteGhostUp;
+		}
+	}
 }
 
 
