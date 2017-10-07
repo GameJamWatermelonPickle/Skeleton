@@ -12,8 +12,6 @@
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModuleSceneBaseballField::ModuleSceneBaseballField()
 {}
 

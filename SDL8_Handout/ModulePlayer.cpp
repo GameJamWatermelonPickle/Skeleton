@@ -10,10 +10,11 @@
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneBaseballField.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 
 ModulePlayer::ModulePlayer()
 {
+	rectLife.PushBack({ 0,0,39,38 });
 	// idle animation (just the ship)
 	idleMiddleRight.PushBack({ 0, 0, 49, 61 });
 	idleMiddleRight.PushBack({ 61, 0, 49, 61 });
@@ -127,6 +128,7 @@ ModulePlayer::ModulePlayer()
 	leftMiddle.speed = leftHappy.speed = leftSad.speed = 0.15;
 	downMiddle.speed = downHappy.speed = downSad.speed = 0.03;
 	Up.speed = 0.15;
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -138,7 +140,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("rtype/Sprites_Big.png");
-
+	graphicsLife = App->textures->Load("rtype/superPower.png");
 	destroyed = false;
 	position.x = 150;
 	position.y = 120;
@@ -319,19 +321,22 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN && superpower > 0 || App->input->buttonX == KEY_STATE::KEY_DOWN && superpower > 0)
 		{
-			if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
-				App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+			if (superpower != 0)
+			{
+				if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
+					App->particles->AddParticle(App->particles->big_laser, position.x + 20, position.y + 12, COLLIDER_PLAYER_SHOT);
 
-			if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
-				App->particles->AddParticle(App->particles->big_laser_left, position.x - 20, position.y + 12, COLLIDER_PLAYER_SHOT);
+				if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
+					App->particles->AddParticle(App->particles->big_laser_left, position.x - 20, position.y + 12, COLLIDER_PLAYER_SHOT);
 
-			if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
-				App->particles->AddParticle(App->particles->big_laser_down, position.x - 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+				if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
+					App->particles->AddParticle(App->particles->big_laser_down, position.x - 4, position.y + 30, COLLIDER_PLAYER_SHOT);
 
-			if (current_animation == &idleUp || current_animation == &Up)
-				App->particles->AddParticle(App->particles->big_laser_up, position.x - 4, position.y - 30, COLLIDER_PLAYER_SHOT);
+				if (current_animation == &idleUp || current_animation == &Up)
+					App->particles->AddParticle(App->particles->big_laser_up, position.x - 4, position.y - 30, COLLIDER_PLAYER_SHOT);
 
-			superpower -= 1;
+				superpower -= 1;
+			}
 		}
 
 		
@@ -354,8 +359,11 @@ update_status ModulePlayer::Update()
 	collA = false;
 	collS = false;
 	collD = false;
-
 	
+	for (int i = 0, x =0; i < superpower; i++,  x += 30)
+	{
+		App->render->Blit(graphicsLife, App->render->camera.x+x, App->render->camera.y + 650, &rectLife.GetCurrentFrame());
+	}
 
 	return UPDATE_CONTINUE;
 }
