@@ -58,7 +58,7 @@ update_status ModuleSceneIntro::Update()
 		}
 		else {
 			App->CleanUp();
-			return update_status::UPDATE_STOP;º
+			return update_status::UPDATE_STOP;
 		}
 	}
 
