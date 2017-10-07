@@ -140,7 +140,7 @@ update_status ModuleSceneBaseballField::Update()
 		death = 0;
 		win++;
 		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
-		if (win == 35) {
+		if (win == 10) {
 			App->fade->FadeToBlack(this, (Module*)App->girl);
 		}
 

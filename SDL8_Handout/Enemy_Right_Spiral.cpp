@@ -92,8 +92,9 @@ void Enemy_Right_Spiral::Move()
 
 
 void Enemy_Right_Spiral::OnCollision(Collider* c1, Collider* c2) {
-	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
+	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 	{
+		if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
 		App->baseball_field->color += 10;
 		App->baseball_field->death++;
 	}
