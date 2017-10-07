@@ -7,7 +7,10 @@
 class Enemy_Up_S : public Enemy
 {
 private:
-	Animation fly;
+	Animation redGhostUp;
+	Animation redGhostDown;
+	Animation redGhostLeft;
+	Animation redGhostRight;
 	iPoint originalpos;
 	Path movement;
 

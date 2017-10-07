@@ -15,18 +15,6 @@ protected:
 
 public:
 	iPoint position;
-	Animation whiteGhostUp;
-	Animation whiteGhostDown;
-	Animation whiteGhostLeft;
-	Animation whiteGhostRight;
-	Animation blueGhostUp;
-	Animation blueGhostRight;
-	Animation blueGhostDown;
-	Animation blueGhostLeft;
-	Animation redGhostUp;
-	Animation redGhostDown;
-	Animation redGhostLeft;
-	Animation redGhostRight;
 	SDL_Texture* textureGhost;
 public:
 	Enemy(int x, int y);

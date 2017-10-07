@@ -32,5 +32,10 @@ typedef unsigned int uint;
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1
 #define MAX_MUSIC 2
+#define	ballposx 551
+#define	ballposy 471
+#define PI 3.14159265
+#define ANGLE_CONVERT (180.0 / PI)
+#define ANGLE_CONVERT_REVERSE (PI / 180.0)
 
 #endif // __GLOBALS_H__

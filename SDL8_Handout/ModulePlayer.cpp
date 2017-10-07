@@ -211,12 +211,12 @@ update_status ModulePlayer::Update()
 		else
 			current_animation = &idleSadRight;
 		if (lvl == 1) {
-			position.x = 54;
-			position.y = 95;
+			position.x = 101;
+			position.y = 370;
 		}
 		else if (lvl == 2) {
-			position.x = 251;
-			position.y = 104;
+			position.x = 574;
+			position.y = 370;
 		}
 		if (lvl == 1 && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN || App->input->dpadRight == KEY_STATE::KEY_REPEAT || App->input->joy_right == KEY_STATE::KEY_REPEAT)
 			lvl = 2;
@@ -305,7 +305,10 @@ update_status ModulePlayer::Update()
 
 
 			if (position.y > SCREEN_HEIGHT / 2) {
-				if (App->render->camera.y < 300) {
+				if (App->render->camera.y < 300 && lvl == 1) {
+					App->render->camera.y += speed;
+				}
+				else if (App->render->camera.y < 380 && lvl == 2) {
 					App->render->camera.y += speed;
 				}
 			}
