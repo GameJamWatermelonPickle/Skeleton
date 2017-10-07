@@ -50,9 +50,17 @@ private:
 
 public:
 
-	Particle explosion;
 	Particle laser;
-	Particle tower;
+	Particle laser_left;
+	Particle laser_up;
+	Particle laser_down;
+
+	Particle big_laser;
+	Particle big_laser_left;
+	Particle big_laser_up;
+	Particle big_laser_down;
+
+
 };
 
 #endif // __MODULEPARTICLES_H__

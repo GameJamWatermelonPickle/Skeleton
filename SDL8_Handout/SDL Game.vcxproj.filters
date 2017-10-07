@@ -83,13 +83,22 @@
     <ClInclude Include="Audio.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_Left_Straight.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy_Left_S.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Left_Spiral.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Left_Straight.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Right_s.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Right_Spiral.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Right_Straight.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneGirl.h">
@@ -154,10 +163,19 @@
     <ClCompile Include="Enemy_Left_S.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Left_Spiral.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="Enemy_Left_Straight.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_Left_Spiral.cpp">
+    <ClCompile Include="Enemy_Right_s.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Right_Spiral.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Right_Straight.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneGirl.cpp">

@@ -24,15 +24,25 @@ ModulePlayer::ModulePlayer()
 	idleMiddleLeft.PushBack({ 364, 0, 49, 61 });
 	idleMiddleLeft.PushBack({ 426, 0, 49, 61 });
 
-	idleHappy.PushBack({ 1,207,49,61 });
-	idleHappy.PushBack({ 62,207,49,61 });
-	idleHappy.PushBack({ 124,207,49,61 });
-	idleHappy.PushBack({ 185,207,49,61 });
+	idleHappyRight2.PushBack({ 1,207,49,61 });
+	idleHappyRight2.PushBack({ 62,207,49,61 });
+	idleHappyRight2.PushBack({ 124,207,49,61 });
+	idleHappyRight2.PushBack({ 185,207,49,61 });
 
-	idleSad.PushBack({ 0,414,49,61 });
-	idleSad.PushBack({ 61,414,49,61 });
-	idleSad.PushBack({ 123,414,49,61 });
-	idleSad.PushBack({ 184,414,49,61 });
+	idleHappyLeft.PushBack({242,207,49,61});
+	idleHappyLeft.PushBack({304,207,49,61});
+	idleHappyLeft.PushBack({365,207,49,61});
+	idleHappyLeft.PushBack({427,207,49,61});
+
+	idleSadRight.PushBack({ 0,414,49,61 });
+	idleSadRight.PushBack({ 61,414,49,61 });
+	idleSadRight.PushBack({ 123,414,49,61 });
+	idleSadRight.PushBack({ 184,414,49,61 });
+
+	idleSadLeft.PushBack({241,414,49,61});
+	idleSadLeft.PushBack({ 303,415,49,61 });
+	idleSadLeft.PushBack({ 364,415,49,61 });
+	idleSadLeft.PushBack({ 426,414,49,61 });
 
 	//Movimiento
 	rightMiddle.PushBack({ 370, 75, 49, 61 });
@@ -112,7 +122,7 @@ ModulePlayer::ModulePlayer()
 	Up.PushBack({ 712, 0, 36, 61 });
 
 
-	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappy.speed = idleSad.speed = 0.15;
+	idleMiddleRight.speed = idleMiddleLeft.speed = idleHappyRight2.speed = idleHappyLeft.speed = idleSadRight.speed= idleSadLeft.speed = 0.15;
 	rightMiddle.speed = rightHappy.speed = rightSad.speed = 0.15;
 	leftMiddle.speed = leftHappy.speed = leftSad.speed = 0.15;
 	downMiddle.speed = downHappy.speed = downSad.speed = 0.03;
@@ -132,7 +142,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 	position.x = 150;
 	position.y = 120;
-
+	personality = 0;
 	col = App->collision->AddCollider({position.x + 2, position.y - 5, 45,56}, COLLIDER_PLAYER, this);
 
 	lvl = 1;
@@ -155,10 +165,27 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	if (App->baseball_field->color >= 0 && App->baseball_field->color <= 39)
+	{
+		personality = 0;
+	}
+	else if (App->baseball_field->color >= 40 && App->baseball_field->color <= 59)
+	{
+		personality = 1;
+	}
+	else
+	{
+		personality = 2;
+	}
 	
 	if (App->level_selector->lvlselector == true)
 	{
-		current_animation = &idleMiddleRight;
+		if (personality == 0)
+			current_animation = &idleHappyRight2;
+		else if (personality == 1)
+			current_animation = &idleMiddleRight;
+		else
+			current_animation = &idleSadRight;
 		if (lvl == 1) {
 			position.x = 54;
 			position.y = 95;
@@ -176,10 +203,16 @@ update_status ModulePlayer::Update()
 
 	else {
 		int speed = 4;
+		
 		//Dash
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->dpadLeft == KEY_STATE::KEY_REPEAT || App->input->joy_left == KEY_STATE::KEY_REPEAT) && collA == false)
 		{
-			current_animation = &leftMiddle;
+			if (personality == 0)
+				current_animation = &leftHappy;
+			else if (personality == 1)
+				current_animation = &leftMiddle;
+			else
+				current_animation = &leftSad;
 			position.x -= speed;
 			if (position.x < App->render->camera.x + SCREEN_WIDTH / 2) {
 				if (App->render->camera.x > 0) {
@@ -192,13 +225,25 @@ update_status ModulePlayer::Update()
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->dpadLeft == KEY_STATE::KEY_UP || App->input->joy_left == KEY_STATE::KEY_UP))
 		{
-			current_animation = &idleMiddleLeft;
+			
+			if (personality == 0)
+				current_animation = &idleHappyLeft;
+			else if (personality == 1)
+				current_animation = &idleMiddleLeft;
+			else
+				current_animation = &idleSadLeft;
 
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->dpadRight == KEY_STATE::KEY_REPEAT || App->input->joy_right == KEY_STATE::KEY_REPEAT) && collD == false)
 		{
-			current_animation = &rightMiddle;
+			if (personality == 0)
+				current_animation = &rightHappy;
+			else if (personality == 1)
+				current_animation = &rightMiddle;
+			else
+				current_animation = &rightSad;
+			
 			position.x += speed;
 			if (position.x > SCREEN_WIDTH / 2) {
 				if (App->render->camera.x < 398) {
@@ -211,14 +256,26 @@ update_status ModulePlayer::Update()
 		}
 		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->input->dpadRight == KEY_STATE::KEY_UP || App->input->joy_right == KEY_STATE::KEY_UP) && collD == false)
 		{
-			current_animation = &idleMiddleRight;
+			if (personality == 0)
+				current_animation = &idleHappyRight2;
+			else if (personality == 1)
+				current_animation = &idleMiddleRight;
+			else
+				current_animation = &idleSadRight;
+			
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->dpadDown == KEY_STATE::KEY_REPEAT || App->input->joy_down == KEY_STATE::KEY_REPEAT) && collS == false)
 		{
 			position.y += speed;
 
-			current_animation = &downMiddle;
+			if (personality == 0)
+				current_animation = &downHappy;
+			else if (personality == 1)
+				current_animation = &downMiddle;
+			else
+				current_animation = &downSad;
+
 
 			if (position.y > SCREEN_HEIGHT / 2) {
 				if (App->render->camera.y < 300) {
@@ -258,12 +315,7 @@ update_status ModulePlayer::Update()
 		{
 			App->fade->FadeToBlack((Module*)App->baseball_field, (Module*)App->gameover);//que modulo se carga al morir
 																							//death animation
-			App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE, 150);
-			App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, COLLIDER_NONE, 220);
-			App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, COLLIDER_NONE, 670);
-			App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, COLLIDER_NONE, 480);
-			App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, COLLIDER_NONE, 350);
-			destroyed = true;
+		
 		}
 
 	}
@@ -277,6 +329,8 @@ update_status ModulePlayer::Update()
 	collA = false;
 	collS = false;
 	collD = false;
+
+	
 
 	return UPDATE_CONTINUE;
 }
