@@ -3,6 +3,7 @@
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "Path.h"
+#include "ModuleSceneBaseballField.h"
 
 Enemy_Left_Spiral::Enemy_Left_Spiral(int x, int y) : Enemy(x, y)
 {
@@ -43,5 +44,9 @@ void Enemy_Left_Spiral::Move()
 
 
 void Enemy_Left_Spiral::OnCollision(Collider* c1, Collider* c2) {
-
+	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
+	{
+		App->baseball_field->color += 10;
+		App->baseball_field->death++;
+	}
 }
