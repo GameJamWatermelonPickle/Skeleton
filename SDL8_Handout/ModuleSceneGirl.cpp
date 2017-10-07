@@ -147,7 +147,7 @@ update_status ModuleSceneGirl::Update()
 	{
 
 		App->baseball_field->win++;
-		if (App->baseball_field->win == 4) {
+		if (App->baseball_field->win == 13) {
 			App->fade->FadeToBlack(this, (Module*)App->win);
 			App->baseball_field->win = 0;
 		}
