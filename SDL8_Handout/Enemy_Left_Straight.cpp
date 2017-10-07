@@ -19,8 +19,8 @@ Enemy_Left_Straight::Enemy_Left_Straight(int x, int y) : Enemy(x, y)
 	animation = &fly;
 
 
-	movement.PushBack({ -1.0f,2.0f }, 65, &fly);
-	movement.PushBack({- 1.0f,0.0f }, 5000, &fly);
+	movement.PushBack({ 1.0f,2.0f }, 65, &fly);
+	movement.PushBack({ 1.0f,0.0f }, 5000, &fly);
 
 	originalpos.x = x;
 	originalpos.y = y;
