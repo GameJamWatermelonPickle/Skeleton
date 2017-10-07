@@ -27,6 +27,10 @@ Enemy_Up_Spiral::Enemy_Up_Spiral(int x, int y) : Enemy(x, y)
 	blueGhostDown.PushBack({ 382,7,35,40 });
 	blueGhostDown.PushBack({ 382,101,32,42 });
 
+	blueGhostDown.speed = 0.15f;
+	blueGhostUp.speed = 0.15f;
+	blueGhostRight.speed = 0.15f;
+	blueGhostLeft.speed = 0.15f;
 
 	movement.PushBack({ -2.0f,1.0f }, 180, animation);
 	movement.PushBack({ 1.0f,2.0f }, 251, animation);

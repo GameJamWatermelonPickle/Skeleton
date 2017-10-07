@@ -29,6 +29,10 @@ Enemy_Left_Straight::Enemy_Left_Straight(int x, int y) : Enemy(x, y)
 
 	//animation = &fly;
 
+	whiteGhostDown.speed = 0.15f;
+	whiteGhostUp.speed = 0.15f;
+	whiteGhostLeft.speed = 0.15f;
+	whiteGhostRight.speed = 0.15f;
 
 	movement.PushBack({ -2.0f,0.0f }, 1, animation);
 

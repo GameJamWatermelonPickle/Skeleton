@@ -9,6 +9,7 @@
 #include "ModuleInput.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModulePlayer.h"
+#include "ModuleSceneGirl.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -132,6 +133,7 @@ update_status ModuleParticles::Update()
 	}
 
 	App->render->DrawQuad(App->baseball_field->R, 27, 27, 101, App->baseball_field->color);
+	App->render->DrawQuad(App->girl->R, 27, 27, 101, App->baseball_field->color);
 
 	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_DOWN && App->baseball_field->over == false)
 		App->baseball_field->color += 10;
