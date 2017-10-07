@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
@@ -11,6 +12,9 @@
 #include "ModuleEnemies.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
+#include "ModuleAudio.h"
+#include <time.h>
+#include <stdlib.h>
 #include "SDL_mixer/include/SDL_mixer.h"
 
 ModuleSceneBaseballField::ModuleSceneBaseballField()
@@ -60,9 +64,15 @@ bool ModuleSceneBaseballField::Start()
 	R.w = 1200;
 
 	color = 0;
+	cont = 0;
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
+	App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
+	App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::DOWN_STRAIGHT, 526, 896);
+
+	//App->enemies->AddEnemy(ENEMY_TYPES::DOWN_STRAIGHT, 526, 896);
 
 	return true;
 }
@@ -86,6 +96,17 @@ bool ModuleSceneBaseballField::CleanUp()
 update_status ModuleSceneBaseballField::Update()
 {
 
+	if (cont < 100)
+		cont++;
+	if (cont == 100) {
+		App->enemies->AddEnemy(ENEMY_TYPES::LEFT_SPIRAL, 27, 375);
+		App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
+		App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
+		App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
+		cont++;
+	}
+
+
 	if (App->baseball_field->color <= 255 && App->baseball_field->color >= 60)
 	{
 		App->render->Blit(background3, 0, 0, NULL);
@@ -98,6 +119,7 @@ update_status ModuleSceneBaseballField::Update()
 	{
 		App->render->Blit(background, 0, 0, NULL);
 	}
+
 	
 
 	if (color >= 250) {
@@ -106,10 +128,41 @@ update_status ModuleSceneBaseballField::Update()
 	}
 
 
-
-
-	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
+	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
+		death = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			random[i] = rand() % 3;
+		}
+
+		if (random[0] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
+		else if (random[0] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::LEFT_S, 27, 375);
+		else if (random[0] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::LEFT_SPIRAL, 27, 375);
+
+		if (random[1] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
+		else if (random[1] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
+		else if (random[1] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_SPIRAL, 1050, 375);
+
+		if (random[2] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::UP_STRAIGHT, 526, 8);
+		else if (random[2] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
+		else if (random[2] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
+
+		if (random[3] == 0)
+			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_STRAIGHT, 526, 896);
+		else if (random[3] == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_S, 526, 896);
+		else if (random[3] == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::DOWN_SPIRAL, 526, 896);
 
 	}
 

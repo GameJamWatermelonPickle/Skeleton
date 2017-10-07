@@ -3,6 +3,7 @@
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "Path.h"
+#include "ModuleSceneBaseballField.h"
 
 Enemy_Up_Straight::Enemy_Up_Straight(int x, int y) : Enemy(x, y)
 {
@@ -39,5 +40,9 @@ void Enemy_Up_Straight::Move()
 
 
 void Enemy_Up_Straight::OnCollision(Collider* c1, Collider* c2) {
-
+	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
+	{
+		App->baseball_field->color += 10;
+		App->baseball_field->death++;
+	}
 }

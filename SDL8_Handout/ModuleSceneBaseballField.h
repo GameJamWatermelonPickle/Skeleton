@@ -26,6 +26,8 @@ public:
 	uint color = 0;
 	bool over = false;
 	uint death = 0;
+	uint random[4];
+	uint cont = 0;
 	bool check_audio = true;
 	bool check_audio2 = true;
 };
