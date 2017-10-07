@@ -147,6 +147,8 @@ bool ModulePlayer::Start()
 	personality = 0;
 	col = App->collision->AddCollider({position.x + 2, position.y - 5, 45,56}, COLLIDER_PLAYER, this);
 
+	current_animation = &idleHappyRight2;
+
 	lvl = 1;
 	superpower = 3;
 
