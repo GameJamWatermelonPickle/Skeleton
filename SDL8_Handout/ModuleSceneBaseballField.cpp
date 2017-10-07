@@ -28,6 +28,8 @@ bool ModuleSceneBaseballField::Start()
 {
 	LOG("Loading space intro");
 
+	respawn = App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+
 	background = App->textures->Load("rtype/beisbol_1.png");
 	background2 = App->textures->Load("rtype/beisbol_2.png");
 	background3 = App->textures->Load("rtype/beisbol_3.png");
@@ -67,7 +69,7 @@ bool ModuleSceneBaseballField::Start()
 	cont = 0;
 
 	// Enemies ---
-	App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+	App->audio->PlayFX(respawn);
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
@@ -101,7 +103,7 @@ update_status ModuleSceneBaseballField::Update()
 	if (cont < 100)
 		cont++;
 	if (cont == 100) {
-		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+		App->audio->PlayFX(respawn);
 		App->enemies->AddEnemy(ENEMY_TYPES::LEFT_SPIRAL, 27, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
@@ -140,7 +142,8 @@ update_status ModuleSceneBaseballField::Update()
 	{
 		death = 0;
 		win++;
-		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+		
+		App->audio->PlayFX(respawn);
 		if (win == 4) {
 			App->fade->FadeToBlack(this, (Module*)App->girl);
 			win = 0;

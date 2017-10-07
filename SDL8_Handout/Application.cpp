@@ -14,6 +14,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
+#include "ModuleWin.h"
 #include "ModuleEnd.h"
 
 Application::Application()
@@ -29,6 +30,7 @@ Application::Application()
 	modules[i++] = baseball_field = new ModuleSceneBaseballField();
 	modules[i++] = girl = new ModuleSceneGirl();
 	modules[i++] = gameover = new ModuleEnd();
+	modules[i++] = win = new ModuleWin();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
@@ -57,6 +59,8 @@ bool Application::Init()
 	enemies->Disable();
 	gameover->Disable();
 	girl->Disable();
+	win->Disable();
+
 	// ----------------------------
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

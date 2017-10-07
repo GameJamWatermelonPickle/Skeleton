@@ -33,9 +33,9 @@ Enemy_Down_S::Enemy_Down_S(int x, int y) : Enemy(x, y)
 
 
 
-	movement.PushBack({ 2.0f,-1.0f }, 57, animation);
-	movement.PushBack({ -2.0f,-1.0f }, 114, animation);
-	movement.PushBack({ 2.0f,-1.0f }, 57, animation);
+	movement.PushBack({ 0.5f, -1.13f }, 100, animation);
+	movement.PushBack({ -0.5f, -1.0f }, 200, animation);
+	movement.PushBack({ 0.5f, -1.13f }, 100, animation);
 
 
 	originalpos.x = x;
