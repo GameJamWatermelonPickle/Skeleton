@@ -45,6 +45,7 @@ bool ModuleSceneLevelSelector::CleanUp()
 
 	App->player->Disable();
 	lvlselector = false;
+	App->audio->UnloadMusic();
 
 	return true;
 }

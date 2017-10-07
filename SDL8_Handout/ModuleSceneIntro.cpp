@@ -22,6 +22,8 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading space intro");
 
+	App->audio->LoadMusic("Audios/sound_effects/sonrisa/intro.ogg");
+
 	App->collision->CleanUp();
 	
 	background = App->textures->Load("rtype/menu.png");
