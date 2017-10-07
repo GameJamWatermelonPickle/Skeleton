@@ -20,6 +20,7 @@ public:
 	
 	SDL_Texture* background = nullptr;
 	SDL_Texture* stars = nullptr;
+	uint menu;
 };
 
 #endif // __MODULESCENESPACE_H__

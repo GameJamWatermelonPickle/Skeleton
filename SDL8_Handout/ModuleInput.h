@@ -52,6 +52,7 @@ public:
 	KEY_STATE joy_left;
 	KEY_STATE joy_right;
 	KEY_STATE buttonRB;
+	KEY_STATE buttonLB;
 
 	KEY_STATE buttonA2;
 	KEY_STATE buttonB2;

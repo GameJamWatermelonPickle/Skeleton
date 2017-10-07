@@ -63,6 +63,9 @@ public:
 	uint superpower;
 	uint Combocount;
 	uint shoot;
+
+	uint step;
+
 };
 
 #endif

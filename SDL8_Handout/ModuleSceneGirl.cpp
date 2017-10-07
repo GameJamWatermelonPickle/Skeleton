@@ -152,8 +152,11 @@ update_status ModuleSceneGirl::Update()
 			App->baseball_field->win = 0;
 		}
 
+<<<<<<< HEAD
 		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 
+=======
+>>>>>>> 279c62757810056b3b09cf3e23d29b9f25795b1e
 		App->audio->PlayFX(respawn);
 
 		App->baseball_field->death = 0;

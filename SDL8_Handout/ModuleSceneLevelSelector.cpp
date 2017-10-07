@@ -27,6 +27,7 @@ bool ModuleSceneLevelSelector::Start()
 	
 
 	background = App->textures->Load("rtype/Transicion_prueba.png");
+	menu = App->audio->LoadFX("Audios/sound_effects/steps.wav");
 
 	App->player->Enable();
 	lvlselector = true;
@@ -60,9 +61,16 @@ update_status ModuleSceneLevelSelector::Update()
 	App->render->Blit(background, 0, 0, NULL);
 
 	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false) && App->player->lvl == 1)
+	{
+		App->audio->PlayFX(menu);
 		App->fade->FadeToBlack(this, (Module*)App->baseball_field);
+	}
 	if ((App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonA == KEY_DOWN && App->fade->IsFading() == false) && App->player->lvl == 2)
+	{
+		App->audio->PlayFX(menu);
 		App->fade->FadeToBlack(this, (Module*)App->girl);
+	}
 	
+
 	return UPDATE_CONTINUE;
 }
