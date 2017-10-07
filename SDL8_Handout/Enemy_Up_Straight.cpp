@@ -32,7 +32,7 @@ Enemy_Up_Straight::Enemy_Up_Straight(int x, int y) : Enemy(x, y)
 	//animation = &fly;
 
 
-	movement.PushBack({ 0.0f,-2.0f }, 1, animation);
+	movement.PushBack({ 0.0f,2.0f }, 1, animation);
 
 
 
@@ -49,50 +49,16 @@ Enemy_Up_Straight::Enemy_Up_Straight(int x, int y) : Enemy(x, y)
 void Enemy_Up_Straight::Move()
 {
 	position = originalpos + movement.GetCurrentPosition();
-	position = originalpos + movement.GetCurrentPosition();
-	bool left;
-	float angle;
-
-
-	if (ballposx >= position.x) {
-		left = false;
-	}
-	else {
-		left = true;
-	}
-
-	angle = ((float)acos((((ballposx - position.x) * 0) + ((ballposy - position.y) * 1)) / (sqrt((double)((ballposx - position.x)*(ballposx - position.x) + (ballposy - position.y)*(ballposy - position.y)))*sqrt((double)(0 * 0 + 1 * 1))))) * ANGLE_CONVERT;
-	if (left == false) {
-		if (angle <= 45) {
-			animation = &whiteGhostDown;
-		}
-
-		else if (angle > 45 && angle < 135) {
-			animation = &whiteGhostRight;
-		}
-		else {
-			animation = &whiteGhostUp;
-		}
-	}
-	else {
-		if (angle <= 45) {
-			animation = &whiteGhostDown;
-		}
-
-		else if (angle > 45 && angle < 135) {
-			animation = &whiteGhostLeft;
-		}
-		else {
-			animation = &whiteGhostUp;
-		}
-	}
+	animation = &whiteGhostDown;
 }
 
 
 void Enemy_Up_Straight::OnCollision(Collider* c1, Collider* c2) {
-	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
+	if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 	{
+		if(c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_TOWER || c2->type == COLLIDER_PLAYER))
 		App->baseball_field->color += 10;
+
 		App->baseball_field->death++;
 	}
 }

@@ -67,6 +67,7 @@ bool ModuleSceneBaseballField::Start()
 	cont = 0;
 
 	// Enemies ---
+	App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 	App->enemies->AddEnemy(ENEMY_TYPES::LEFT_STRAIGHT, 27, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_S, 1050, 375);
 	App->enemies->AddEnemy(ENEMY_TYPES::UP_SPIRAL, 526, 8);
@@ -99,6 +100,7 @@ update_status ModuleSceneBaseballField::Update()
 	if (cont < 100)
 		cont++;
 	if (cont == 100) {
+		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 		App->enemies->AddEnemy(ENEMY_TYPES::LEFT_SPIRAL, 27, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::RIGHT_STRAIGHT, 1050, 375);
 		App->enemies->AddEnemy(ENEMY_TYPES::UP_S, 526, 8);
@@ -127,12 +129,18 @@ update_status ModuleSceneBaseballField::Update()
 		over = true;
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->girl);
+	}
+
 
 	if (death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
 	{
 		death = 0;
 		win++;
-		if (win == 35) {
+		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
+		if (win == 10) {
 			App->fade->FadeToBlack(this, (Module*)App->girl);
 		}
 
