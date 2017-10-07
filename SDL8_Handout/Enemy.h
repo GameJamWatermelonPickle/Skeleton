@@ -20,9 +20,8 @@ public:
 	Animation whiteGhostLeft;
 	Animation whiteGhostRight;
 	Animation blueGhostUp;
-	Animation blueGhostDown;
+	//Animation blueGhostDown;
 	Animation blueGhostLeft;
-	Animation blueGhostDown;
 	Animation redGhostUp;
 	Animation redGhostDown;
 	Animation redGhostLeft;

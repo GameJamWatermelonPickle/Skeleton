@@ -7,6 +7,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
@@ -34,6 +35,8 @@ bool ModuleSceneBaseballField::Start()
 	App->enemies->Enable();
 
 	App->render->camera.x = App->render->camera.y = 0;
+
+	App->audio->LoadMusic("Audios/sound_effects/sonrisa/VidaAlta.ogg");
 
 	// Colliders ---
 	App->collision->AddCollider({ 153, 0, 800, 9 }, COLLIDER_WALL); //1
@@ -72,6 +75,7 @@ bool ModuleSceneBaseballField::CleanUp()
 	App->collision->Disable();
 	App->particles->Disable();
 	App->player->Disable();
+	App->audio->UnloadMusic();
 	App->textures->Unload(background);
 
 
@@ -101,15 +105,7 @@ update_status ModuleSceneBaseballField::Update()
 		over = true;
 	}
 
-	//if (check_audio) {
-	//	App->audio->play_music1();
-	//	check_audio = false;
-	//}
 
-	//if(check_audio2 == true && color >= 150){
-	//	App->audio->play_music2();
-	//	check_audio = false;
-	//}
 
 
 	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn

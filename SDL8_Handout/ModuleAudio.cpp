@@ -19,10 +19,6 @@ ModuleAudio::~ModuleAudio()
 // Called before render is available
 bool ModuleAudio::Init()
 {
-
-	music[0] = Mix_LoadMUS("Audios/sound_effects/Sonrisa/VidaAlta.ogg");
-	music[1] = Mix_LoadMUS("Audios/sound_effects/Sonrisa/VidaBaja.ogg");
-
 	bool ret = true;
 	SDL_Init(0);
 	SDL_InitSubSystem(SDL_INIT_AUDIO);
@@ -34,80 +30,66 @@ bool ModuleAudio::Init()
 }
 
 
-bool ModuleAudio::play_music1() {
-	Mix_FadeInMusic(music[0], -1, 2000);	
-	return music1;
-}
-bool ModuleAudio::play_music2() {
-	Mix_FadeInMusic(music[1], -1, 2000);
-	return true;
-}
-
 // Called before q	uitting
 bool ModuleAudio::CleanUp()
 {
-	for (int i = 0; i < MAX_MUSIC; i++)
-		Mix_FreeMusic(music[i]);
-
-	/*for (int i = 0; i < MAX_FX; i++)
-		Mix_FreeChunk(fx[i]);*/
+	UnloadMusic();
+	Mix_CloseAudio();
+	Mix_ChannelFinished(0);
+	Mix_Quit();
+	SDL_QuitSubSystem(SDL_INIT_AUDIO);
 	return true;
 }
 
+bool ModuleAudio::LoadMusic(const char* path) {
 
+	music = Mix_LoadMUS(path);
+	Mix_PlayMusic(music, 0);
 
-
-/*bool ModuleAudio::LoadMusic(const char* path) {
-
-music = Mix_LoadMUS(path);
-Mix_PlayMusic(music, -1);
-
-return true;
+	return true;
 }
 
-*/
-
-/*bool ModuleAudio::UnloadMusic() {
-Mix_FreeMusic(music);
-music = nullptr;
-Mix_HaltMusic();
-return true;
+bool ModuleAudio::UnloadMusic() {
+	Mix_FreeMusic(music);
+	music = nullptr;
+	Mix_HaltMusic();
+	return true;
 }
 
 bool ModuleAudio::UnloadFX(uint FXname)
 {
-bool ret = false;
+	bool ret = false;
 
-if (fx[FXname] != nullptr) {
-Mix_FreeChunk(fx[FXname]);
-fx[FXname] = nullptr;
-ret = true;
-last_fx--;
+	if (fx[FXname] != nullptr) {
+		Mix_FreeChunk(fx[FXname]);
+		fx[FXname] = nullptr;
+		ret = true;
+		last_fx--;
+	}
+	return true;
 }
-return true;
-}
 
 
-/*
+
 uint ModuleAudio::LoadFX(const char* path) {
 
-uint ret = 0;
+	uint ret = 0;
 
-Mix_Chunk* audio = Mix_LoadWAV(path);
+	Mix_Chunk* audio = Mix_LoadWAV(path);
 
-if (audio == nullptr) {
-LOG("Cannot load WAV.")
-}
-else {
-fx[last_fx] = audio;
-ret = last_fx++;
-if (last_fx == MAX_FX) {
-last_fx = 0;
-ret = last_fx;
-}
-}
+	if (audio == nullptr) {
+		LOG("Cannot load WAV.")
+	}
+	else {
+		fx[last_fx] = audio;
+		ret = last_fx++;
+		if (last_fx == MAX_FX) {
+			last_fx = 0;
+			ret = last_fx;
+		}
+	}
 
-return ret;
+	return ret;
 
 
 }
@@ -115,12 +97,12 @@ return ret;
 
 bool ModuleAudio::PlayFX(uint FXname) {
 
-if (fx[FXname] != nullptr) {
-Mix_PlayChannel(-1, fx[FXname], 0);
-if (Mix_PlayChannel(-1, fx[FXname], 0) == -1) {
-LOG("Mix_PlayChannel: %s\n", Mix_GetError());
+	if (fx[FXname] != nullptr) {
+		Mix_PlayChannel(-1, fx[FXname], 0);
+		if (Mix_PlayChannel(-1, fx[FXname], 0) == -1) {
+			LOG("Mix_PlayChannel: %s\n", Mix_GetError());
+		}
+		ret = true;
+	}
+	return true;
 }
-ret = true;
-}
-return true;
-}*/
