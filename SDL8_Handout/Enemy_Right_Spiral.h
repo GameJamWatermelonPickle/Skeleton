@@ -7,7 +7,10 @@
 class Enemy_Right_Spiral : public Enemy
 {
 private:
-	Animation fly;
+	Animation blueGhostUp;
+	Animation blueGhostRight;
+	Animation blueGhostDown;
+	Animation blueGhostLeft;
 	iPoint originalpos;
 	Path movement;
 

@@ -7,22 +7,32 @@
 
 Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 5,6,24,24 });
-	fly.PushBack({ 38, 6, 24, 24 });
-	fly.PushBack({ 71, 6, 24, 24 });
-	fly.PushBack({ 104, 6, 24, 24 });
-	fly.PushBack({ 137, 6, 24, 24 });
-	fly.PushBack({ 170, 6, 24, 24 });
-	fly.PushBack({ 203, 6, 24, 24 });
-	fly.PushBack({ 236, 6, 24, 24 });
-	fly.speed = 0.2f;
+	redGhostRight.PushBack({ 6,7,43,43 });
+	redGhostRight.PushBack({ 168,53,43,43 });
+	redGhostRight.PushBack({ 168,7,43,43 });
+	redGhostRight.PushBack({ 168,101,42,42 });
 
-	animation = &fly;
+	redGhostLeft.PushBack({ 168,155,43,43 });
+	redGhostLeft.PushBack({ 168,201,43,43 });
+	redGhostLeft.PushBack({ 168,155,43,43 });
+	redGhostLeft.PushBack({ 168,249,42,42 });
+
+	redGhostUp.PushBack({ 274,8,35,42 });
+	redGhostUp.PushBack({ 274,54,33,41 });
+	redGhostUp.PushBack({ 274,8,35,42 });
+	redGhostUp.PushBack({ 274,103,32,40 });
+
+	redGhostDown.PushBack({ 225,7,35,40 });
+	redGhostDown.PushBack({ 225,53,32,40 });
+	redGhostDown.PushBack({ 225,7,35,40 });
+	redGhostDown.PushBack({ 225,101,32,42 });
 
 
-	movement.PushBack({ 1.0f,-2.0f }, 57, &fly);
-	movement.PushBack({ 1.0f,2.0f }, 114, &fly);
-	movement.PushBack({ 1.0f,-2.0f }, 57, &fly);
+
+
+	movement.PushBack({ 1.0f,-2.0f }, 57, animation);
+	movement.PushBack({ 1.0f,2.0f }, 114, animation);
+	movement.PushBack({ 1.0f,-2.0f }, 57, animation);
 
 
 	originalpos.x = x;
@@ -38,6 +48,43 @@ Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
 void Enemy_Left_S::Move()
 {
 	position = originalpos + movement.GetCurrentPosition();
+	position = originalpos + movement.GetCurrentPosition();
+	bool left;
+	float angle;
+
+
+	if (ballposx >= position.x) {
+		left = false;
+	}
+	else {
+		left = true;
+	}
+
+	angle = ((float)acos((((ballposx - position.x) * 0) + ((ballposy - position.y) * 1)) / (sqrt((double)((ballposx - position.x)*(ballposx - position.x) + (ballposy - position.y)*(ballposy - position.y)))*sqrt((double)(0 * 0 + 1 * 1))))) * ANGLE_CONVERT;
+	if (left == false) {
+		if (angle <= 45) {
+			animation = &redGhostDown;
+		}
+
+		else if (angle > 45 && angle < 135) {
+			animation = &redGhostRight;
+		}
+		else {
+			animation = &redGhostUp;
+		}
+	}
+	else {
+		if (angle <= 45) {
+			animation = &redGhostDown;
+		}
+
+		else if (angle > 45 && angle < 135) {
+			animation = &redGhostLeft;
+		}
+		else {
+			animation = &redGhostUp;
+		}
+	}
 }
 
 
