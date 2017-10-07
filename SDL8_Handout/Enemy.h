@@ -20,7 +20,7 @@ public:
 	Animation whiteGhostLeft;
 	Animation whiteGhostRight;
 	Animation blueGhostUp;
-	Animation blueGhostDown;
+	Animation blueGhostRight;
 	Animation blueGhostLeft;
 	Animation blueGhostDown;
 	Animation redGhostUp;
