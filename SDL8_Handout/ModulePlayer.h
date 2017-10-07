@@ -37,7 +37,7 @@ public:
 
 	Animation idleMiddleRight;
 	Animation idleMiddleLeft;
-	Animation idleMiddleDown;
+	
 
 	Animation idleSadRight;
 	Animation idleSadLeft;
@@ -50,6 +50,10 @@ public:
 	Animation downHappy;
 	Animation downMiddle;
 	Animation downSad;
+	Animation idleHappyDown;
+	Animation idleMiddleDown;
+	Animation idleSadDown;
+	Animation idleUp;
 	Animation Up;
 	iPoint position;
 	Collider* col;

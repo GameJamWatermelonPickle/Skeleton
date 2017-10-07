@@ -303,7 +303,17 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->buttonA == KEY_STATE::KEY_DOWN)
 		{
-			App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, COLLIDER_PLAYER_SHOT);
+			if (current_animation == &idleMiddleRight || current_animation == &idleHappyRight2 || current_animation == &idleSadRight || current_animation == &rightMiddle || current_animation == &rightHappy || current_animation == &rightSad)
+				App->particles->AddParticle(App->particles->laser, position.x + 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+		
+			if (current_animation == &idleMiddleLeft || current_animation == &idleHappyLeft || current_animation == &idleSadLeft || current_animation == &leftMiddle || current_animation == &leftHappy || current_animation == &leftSad)
+				App->particles->AddParticle(App->particles->laser_left, position.x - 20, position.y + 15, COLLIDER_PLAYER_SHOT);
+
+			if (current_animation == &idleMiddleDown || current_animation == &idleHappyDown || current_animation == &idleSadDown || current_animation == &downMiddle || current_animation == &downHappy || current_animation == &downSad)
+				App->particles->AddParticle(App->particles->laser_down, position.x + 4, position.y + 30, COLLIDER_PLAYER_SHOT);
+
+			if (current_animation == &idleUp || current_animation == &Up)
+				App->particles->AddParticle(App->particles->laser_up, position.x + 4, position.y - 30, COLLIDER_PLAYER_SHOT);
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
