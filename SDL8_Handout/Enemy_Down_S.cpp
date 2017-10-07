@@ -11,22 +11,28 @@ Enemy_Down_S::Enemy_Down_S(int x, int y) : Enemy(x, y)
 	redGhostRight.PushBack({ 168,53,43,43 });
 	redGhostRight.PushBack({ 168,7,43,43 });
 	redGhostRight.PushBack({ 168,101,42,42 });
+	
 
 	redGhostLeft.PushBack({ 168,155,43,43 });
 	redGhostLeft.PushBack({ 168,201,43,43 });
 	redGhostLeft.PushBack({ 168,155,43,43 });
 	redGhostLeft.PushBack({ 168,249,42,42 });
+	
 
 	redGhostUp.PushBack({ 274,8,35,42 });
 	redGhostUp.PushBack({ 274,54,33,41 });
 	redGhostUp.PushBack({ 274,8,35,42 });
 	redGhostUp.PushBack({ 274,103,32,40 });
+	
 
 	redGhostDown.PushBack({ 225,7,35,40 });
 	redGhostDown.PushBack({ 225,53,32,40 });
 	redGhostDown.PushBack({ 225,7,35,40 });
 	redGhostDown.PushBack({ 225,101,32,42 });
-
+	redGhostDown.speed = 0.15f;
+	redGhostLeft.speed = 0.15f;
+	redGhostUp.speed = 0.15f;
+	redGhostRight.speed = 0.15f;
 
 
 

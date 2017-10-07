@@ -28,6 +28,11 @@ Enemy_Up_Straight::Enemy_Up_Straight(int x, int y) : Enemy(x, y)
 	whiteGhostDown.PushBack({ 63,6,36,42 });
 	whiteGhostDown.PushBack({ 63,100,36,42 });
 
+	whiteGhostDown.speed = 0.15f;
+	whiteGhostUp.speed = 0.15f;
+	whiteGhostLeft.speed = 0.15f;
+	whiteGhostRight.speed = 0.15f;
+
 	//animation = &fly;
 
 

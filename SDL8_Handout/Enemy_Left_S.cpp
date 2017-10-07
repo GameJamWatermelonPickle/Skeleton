@@ -27,6 +27,10 @@ Enemy_Left_S::Enemy_Left_S(int x, int y) : Enemy(x, y)
 	redGhostDown.PushBack({ 225,7,35,40 });
 	redGhostDown.PushBack({ 225,101,32,42 });
 
+	redGhostDown.speed = 0.15f;
+	redGhostLeft.speed = 0.15f;
+	redGhostUp.speed = 0.15f;
+	redGhostRight.speed = 0.15f;
 
 
 
