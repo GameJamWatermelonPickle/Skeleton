@@ -144,6 +144,12 @@ update_status ModuleSceneGirl::Update()
 	
 	if (App->baseball_field->death >= 4 || App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
+		App->baseball_field->win++;
+		if (App->baseball_field->win == 4) {
+			App->fade->FadeToBlack(this, (Module*)App->win);
+			App->baseball_field->win = 0;
+		}
+
 		App->audio->LoadFX("Audios/sound_effects/Sonrisa/FantasmasRespawn.wav");
 		App->baseball_field->death = 0;
 		for (int i = 0; i < 4; i++)
