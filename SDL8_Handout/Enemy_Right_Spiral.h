@@ -1,10 +1,10 @@
-#ifndef __ENEMY_LEFT_S_H__
-#define __ENEMY_LEFT_S_H__
+#ifndef __ENEMY_RIGHT_SPIRAL_H__
+#define __ENEMY_RIGHT_SPIRAL_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
-class Enemy_Left_S : public Enemy
+class Enemy_Right_Spiral : public Enemy
 {
 private:
 	Animation fly;
@@ -13,11 +13,11 @@ private:
 
 public:
 
-	Enemy_Left_S(int x, int y);
+	Enemy_Right_Spiral(int x, int y);
 
 	void OnCollision(Collider* c1, Collider* c2);
 
 	void Move();
 };
 
-#endif
+#endif 
