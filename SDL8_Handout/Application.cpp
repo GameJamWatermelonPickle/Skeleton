@@ -7,6 +7,7 @@
 #include "ModuleSceneLevelSelector.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleSceneBaseballField.h"
+#include "ModuleSceneGirl.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -24,6 +25,7 @@ Application::Application()
 	modules[i++] = scene_intro = new ModuleSceneIntro();
 	modules[i++] = level_selector = new ModuleSceneLevelSelector();
 	modules[i++] = baseball_field = new ModuleSceneBaseballField();
+	modules[i++] = girl = new ModuleSceneGirl();
 	modules[i++] = gameover = new ModuleEnd();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
@@ -51,6 +53,7 @@ bool Application::Init()
 	collision->Disable();
 	enemies->Disable();
 	gameover->Disable();
+	girl->Disable();
 	// ----------------------------
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
