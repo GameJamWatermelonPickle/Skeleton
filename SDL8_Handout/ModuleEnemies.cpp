@@ -9,9 +9,7 @@
 #include "Enemy_Left_Straight.h"
 #include "Enemy_Left_S.h"
 #include "Enemy_Left_Spiral.h"
-#include "Enemy_Right_S.h"
-#include "Enemy_Right_Straight.h"
-#include "Enemy_Right_Spiral.h"
+
 
 #define SPAWN_MARGIN 50
 
@@ -145,18 +143,6 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 				enemies[i] = new Enemy_Left_Spiral(info.x, info.y);
 				break;
 
-
-			case ENEMY_TYPES::RIGHT_S:
-				enemies[i] = new Enemy_Right_S(info.x, info.y);
-				break;
-
-			case ENEMY_TYPES::RIGHT_STRAIGHT:
-				enemies[i] = new Enemy_Right_Straight(info.x, info.y);
-				break;
-
-			case ENEMY_TYPES::RIGHT_SPIRAL:
-				enemies[i] = new Enemy_Right_Spiral(info.x, info.y);
-				break;
 		}
 	}
 }
