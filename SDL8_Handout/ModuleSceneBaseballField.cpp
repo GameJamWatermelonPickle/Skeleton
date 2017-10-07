@@ -1,7 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
-#include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
@@ -11,7 +10,6 @@
 #include "ModuleEnemies.h"
 #include "ModuleSceneBaseballField.h"
 #include "ModuleSceneLevelSelector.h"
-#include "ModuleAudio.h"
 #include "SDL_mixer/include/SDL_mixer.h"
 
 ModuleSceneBaseballField::ModuleSceneBaseballField()
@@ -103,15 +101,15 @@ update_status ModuleSceneBaseballField::Update()
 		over = true;
 	}
 
-	if (check_audio) {
-		App->audio->play_music1();
-		check_audio = false;
-	}
+	//if (check_audio) {
+	//	App->audio->play_music1();
+	//	check_audio = false;
+	//}
 
-	if(check_audio2 == true && color >= 150){
-		App->audio->play_music2();
-		check_audio = false;
-	}
+	//if(check_audio2 == true && color >= 150){
+	//	App->audio->play_music2();
+	//	check_audio = false;
+	//}
 
 
 	if (/*death == 4 ||*/ App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)  //Enemy respawn
