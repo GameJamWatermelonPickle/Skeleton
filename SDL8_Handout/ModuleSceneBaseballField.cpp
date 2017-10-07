@@ -144,7 +144,7 @@ update_status ModuleSceneBaseballField::Update()
 		win++;
 		
 		App->audio->PlayFX(respawn);
-		if (win == 10) {
+		if (win == 11) {
 			App->fade->FadeToBlack(this, (Module*)App->girl);
 			win = 0;
 		}
