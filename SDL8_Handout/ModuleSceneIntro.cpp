@@ -77,6 +77,7 @@ update_status ModuleSceneIntro::Update()
 			positionx = 110;
 			positiony = 246;
 		}
+		App->audio->PlayFX(App->audio->LoadFX("Audios/sound_effects/Sonrisa/menu.wav"));
 	}
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false)
 	{
@@ -88,6 +89,7 @@ update_status ModuleSceneIntro::Update()
 			positionx = 139;
 			positiony = 416;
 		}
+		App->audio->PlayFX(App->audio->LoadFX("Audios/sound_effects/Sonrisa/menu.wav"));
 	}
 
 	return UPDATE_CONTINUE;
