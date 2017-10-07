@@ -48,7 +48,7 @@ update_status ModuleEnd::Update()
 {
 	update_status ret = UPDATE_CONTINUE;
 
-	App->render->Blit(graphics, 170, 210, NULL);
+	App->render->Blit(graphics, 185, 210, NULL);
 
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN && App->fade->IsFading() == false || App->input->buttonStart == KEY_DOWN && App->fade->IsFading() == false) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_intro);
